@@ -40,3 +40,9 @@
  the example above, will change the item with the ID 6. It will change it's name to "Pero" and the property situation to "Very bad situation, life is terrible"
 
  !!!STILL IT'S NOT POSSIBLE TO CHANGE THE DATES!!!
+
+
+#USING THE APP ON YOUR LOCAL MACHINE
+ Currently the app is configured to connect to the remote Heroku PostgreSQL database from Heroku account. Before using it, please change this in
+ src>main>resources>application.properties
+ You will need to install PostgreSQL and Java 17 installed on your computer to be able to run this project locally.
