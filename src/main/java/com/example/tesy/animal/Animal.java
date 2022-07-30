@@ -1,10 +1,15 @@
 package com.example.tesy.animal;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-@Entity
+import javax.persistence.*;
+import java.math.BigInteger;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashSet;
+
 @Table
+@Entity(name="Animal")
 public class Animal {
     @Id
     @SequenceGenerator(
@@ -17,6 +22,7 @@ public class Animal {
             generator = "animal_sequence"
     )
     private Long id;
+    private Date in_date;
 
 
 }
