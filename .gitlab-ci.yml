@@ -19,7 +19,6 @@ unit-test:
 deploy_job:
   stage: deploy
   image: maven:latest
-  when: manual
   tags:
     - docker
   script:
