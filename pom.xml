@@ -49,7 +49,6 @@
 				<artifactId>heroku-maven-plugin</artifactId>
 				<version>3.0.3</version>
 				<configuration>
-					<jdkVersion>17</jdkVersion>
 					<appName>tesy-backend</appName>
 					<logProgress>true</logProgress>
 				</configuration>
