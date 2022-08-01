@@ -9,20 +9,6 @@ import java.util.Optional;
 @RequestMapping(path = "api/animal")
 public class AnimalController {
 
-    private final AnimalService animalService;
-
-    public AnimalController(AnimalService animalService) {
-        this.animalService = animalService;
-    }
-
-    @GetMapping(path = "{animalId}")
-    public Optional<Animal> getAnimal(@PathVariable("animalId") Long animalId){
-        return animalService.getAnimal(animalId);
-    }
-    @GetMapping
-    public List<Animal> getAnimals(){
-        return animalService.getAnimals();
-    }
 
 
 }

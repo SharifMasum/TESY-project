@@ -24,14 +24,6 @@ public class Animal {
             strategy = GenerationType.SEQUENCE,
             generator = "animal_sequence"
     )
+
     private Long id;
-    private Date in_date;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "species_id", referencedColumnName = "id")
-    private Species species;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "status_id", referencedColumnName = "id")
-    private Status status;
 }

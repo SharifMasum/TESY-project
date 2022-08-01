@@ -22,51 +22,5 @@ public class Species {
     )
 
     private long id;
-    private String name;
 
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "species")
-    private Set<Animal> animals = new HashSet<>();
-
-    public Species(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Species(String name) {
-        this.name = name;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Set<Animal> getAnimals() {
-        return animals;
-    }
-
-    public void setAnimals(Set<Animal> animals) {
-        this.animals = animals;
-    }
-
-    @Override
-    public String toString() {
-        return "Species{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

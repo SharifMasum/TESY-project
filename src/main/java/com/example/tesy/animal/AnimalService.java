@@ -11,25 +11,7 @@ import java.util.Optional;
 @Service
 public class AnimalService {
 
-    private final AnimalRepository animalRepository;
 
-    @Autowired
-    public AnimalService(AnimalRepository animalRepository) {
-        this.animalRepository = animalRepository;
-    }
-
-    public Optional<Animal> getAnimal(Long animalId) {
-        var doesExist = animalRepository.existsById(animalId);
-        if(!doesExist){
-            throw new IllegalStateException("The animal with the given ID doesn't exist");
-        }
-            return animalRepository.findById(animalId);
-
-    }
-    public List<Animal> getAnimals() {
-        return animalRepository.findAll();
-
-    }
 
 
 }
