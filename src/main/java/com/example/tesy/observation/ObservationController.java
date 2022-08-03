@@ -1,9 +1,9 @@
-package com.example.tesy.species;
+package com.example.tesy.observation;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "api/species")
-public class SpeciesController {
+@RequestMapping(path = "api/observation")
+public class ObservationController {
 }

@@ -1,19 +1,10 @@
 package com.example.tesy.animal;
 
-import com.example.tesy.species.Species;
-import com.example.tesy.status.Status;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 @Table
 @Entity(name="Animal")
-public class Animal {
+public class AnimalEntity {
     @Id
     @SequenceGenerator(
           name = "animal_sequence",

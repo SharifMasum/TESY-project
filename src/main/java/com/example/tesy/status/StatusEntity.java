@@ -1,15 +1,10 @@
 package com.example.tesy.status;
 
-import com.example.tesy.animal.Animal;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Table
 @Entity(name = "Status")
-public class Status {
+public class StatusEntity {
     @Id
     @SequenceGenerator(
             name = "status_sequence",
