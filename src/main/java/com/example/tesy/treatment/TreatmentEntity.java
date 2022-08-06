@@ -58,6 +58,75 @@ public class TreatmentEntity {
     )
     private PeopleEntity people;
 
+    public TreatmentEntity() {
+
+    }
+
     public void setAnimal(AnimalEntity animalEntity) {
+    }
+
+    public TreatmentEntity(Long id, Date date, String description, Double amountOfMedication, AnimalEntity animal, PeopleEntity people) {
+        this.id = id;
+        this.date = date;
+        this.description = description;
+        this.amountOfMedication = amountOfMedication;
+        this.animal = animal;
+        this.people = people;
+    }
+
+    public TreatmentEntity(Date date, String description, Double amountOfMedication, AnimalEntity animal, PeopleEntity people) {
+        this.date = date;
+        this.description = description;
+        this.amountOfMedication = amountOfMedication;
+        this.animal = animal;
+        this.people = people;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Double getAmountOfMedication() {
+        return amountOfMedication;
+    }
+
+    public void setAmountOfMedication(Double amountOfMedication) {
+        this.amountOfMedication = amountOfMedication;
+    }
+
+    public AnimalEntity getAnimal() {
+        return animal;
+    }
+
+    public PeopleEntity getPeople() {
+        return people;
+    }
+
+    public void setPeople(PeopleEntity people) {
+        this.people = people;
+    }
+
+    @Override
+    public String toString() {
+        return "TreatmentEntity{" +
+                "id=" + id +
+                ", date=" + date +
+                ", description='" + description + '\'' +
+                ", amountOfMedication=" + amountOfMedication +
+                ", animal=" + animal +
+                ", people=" + people +
+                '}';
     }
 }

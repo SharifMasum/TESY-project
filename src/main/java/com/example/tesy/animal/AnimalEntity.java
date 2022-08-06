@@ -5,6 +5,7 @@ import com.example.tesy.people.PeopleEntity;
 import com.example.tesy.species.SpeciesEntity;
 import com.example.tesy.status.StatusEntity;
 import com.example.tesy.treatment.TreatmentEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
@@ -116,6 +117,11 @@ public class AnimalEntity {
             cascade = CascadeType.ALL
     )
     private List<TreatmentEntity> treatmentsList = new ArrayList<TreatmentEntity>();
+
+    public AnimalEntity() {
+
+    }
+
     public void addItem(TreatmentEntity item) {
 
         this.treatmentsList.add(item);
@@ -158,5 +164,242 @@ public class AnimalEntity {
         this.species = species;
     }
 
+    public AnimalEntity(Long id, String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
+        this.id = id;
+        this.tesyId = tesyId;
+        this.inDate = inDate;
+        this.inTesyDate = inTesyDate;
+        this.outTesyDate = outTesyDate;
+        this.fromWhere = fromWhere;
+        this.population = population;
+        this.reason = reason;
+        this.callingNameOfTheAnimal = callingNameOfTheAnimal;
+        this.microchipNumber = microchipNumber;
+        this.animalAge = animalAge;
+        this.animalColor = animalColor;
+        this.breedAnimal = breedAnimal;
+        this.euthanizedReasons = euthanizedReasons;
+        this.seyStatistics = seyStatistics;
+        this.extraNotes = extraNotes;
+        this.createDate = createDate;
+        this.species = species;
+        this.treatmentsList = treatmentsList;
+        this.observationsList = observationsList;
+        this.people = people;
+        this.status = status;
+    }
 
+    public AnimalEntity(String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
+        this.tesyId = tesyId;
+        this.inDate = inDate;
+        this.inTesyDate = inTesyDate;
+        this.outTesyDate = outTesyDate;
+        this.fromWhere = fromWhere;
+        this.population = population;
+        this.reason = reason;
+        this.callingNameOfTheAnimal = callingNameOfTheAnimal;
+        this.microchipNumber = microchipNumber;
+        this.animalAge = animalAge;
+        this.animalColor = animalColor;
+        this.breedAnimal = breedAnimal;
+        this.euthanizedReasons = euthanizedReasons;
+        this.seyStatistics = seyStatistics;
+        this.extraNotes = extraNotes;
+        this.createDate = createDate;
+        this.species = species;
+        this.treatmentsList = treatmentsList;
+        this.observationsList = observationsList;
+        this.people = people;
+        this.status = status;
+    }
+    @JsonBackReference
+
+
+    public String getTesyId() {
+        return tesyId;
+    }
+
+    public void setTesyId(String tesyId) {
+        this.tesyId = tesyId;
+    }
+
+    public Date getInDate() {
+        return inDate;
+    }
+
+    public void setInDate(Date inDate) {
+        this.inDate = inDate;
+    }
+
+    public Date getInTesyDate() {
+        return inTesyDate;
+    }
+
+    public void setInTesyDate(Date inTesyDate) {
+        this.inTesyDate = inTesyDate;
+    }
+
+    public Date getOutTesyDate() {
+        return outTesyDate;
+    }
+
+    public void setOutTesyDate(Date outTesyDate) {
+        this.outTesyDate = outTesyDate;
+    }
+
+    public String getFromWhere() {
+        return fromWhere;
+    }
+
+    public void setFromWhere(String fromWhere) {
+        this.fromWhere = fromWhere;
+    }
+
+    public String getPopulation() {
+        return population;
+    }
+
+    public void setPopulation(String population) {
+        this.population = population;
+    }
+
+    public String getReason() {
+        return reason;
+    }
+
+    public void setReason(String reason) {
+        this.reason = reason;
+    }
+
+    public String getCallingNameOfTheAnimal() {
+        return callingNameOfTheAnimal;
+    }
+
+    public void setCallingNameOfTheAnimal(String callingNameOfTheAnimal) {
+        this.callingNameOfTheAnimal = callingNameOfTheAnimal;
+    }
+
+    public String getMicrochipNumber() {
+        return microchipNumber;
+    }
+
+    public void setMicrochipNumber(String microchipNumber) {
+        this.microchipNumber = microchipNumber;
+    }
+
+    public Number getAnimalAge() {
+        return animalAge;
+    }
+
+    public void setAnimalAge(Number animalAge) {
+        this.animalAge = animalAge;
+    }
+
+    public String getAnimalColor() {
+        return animalColor;
+    }
+
+    public void setAnimalColor(String animalColor) {
+        this.animalColor = animalColor;
+    }
+
+    public String getBreedAnimal() {
+        return breedAnimal;
+    }
+
+    public void setBreedAnimal(String breedAnimal) {
+        this.breedAnimal = breedAnimal;
+    }
+
+    public String getEuthanizedReasons() {
+        return euthanizedReasons;
+    }
+
+    public void setEuthanizedReasons(String euthanizedReasons) {
+        this.euthanizedReasons = euthanizedReasons;
+    }
+
+    public String getSeyStatistics() {
+        return seyStatistics;
+    }
+
+    public void setSeyStatistics(String seyStatistics) {
+        this.seyStatistics = seyStatistics;
+    }
+
+    public String getExtraNotes() {
+        return extraNotes;
+    }
+
+    public void setExtraNotes(String extraNotes) {
+        this.extraNotes = extraNotes;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public List<TreatmentEntity> getTreatmentsList() {
+        return treatmentsList;
+    }
+
+    public void setTreatmentsList(List<TreatmentEntity> treatmentsList) {
+        this.treatmentsList = treatmentsList;
+    }
+
+    public List<ObservationEntity> getObservationsList() {
+        return observationsList;
+    }
+
+    public void setObservationsList(List<ObservationEntity> observationsList) {
+        this.observationsList = observationsList;
+    }
+
+    public PeopleEntity getPeople() {
+        return people;
+    }
+
+    public void setPeople(PeopleEntity people) {
+        this.people = people;
+    }
+
+    public StatusEntity getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusEntity status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "AnimalEntity{" +
+                "id=" + id +
+                ", tesyId='" + tesyId + '\'' +
+                ", inDate=" + inDate +
+                ", inTesyDate=" + inTesyDate +
+                ", outTesyDate=" + outTesyDate +
+                ", fromWhere='" + fromWhere + '\'' +
+                ", population='" + population + '\'' +
+                ", reason='" + reason + '\'' +
+                ", callingNameOfTheAnimal='" + callingNameOfTheAnimal + '\'' +
+                ", microchipNumber='" + microchipNumber + '\'' +
+                ", animalAge=" + animalAge +
+                ", animalColor='" + animalColor + '\'' +
+                ", breedAnimal='" + breedAnimal + '\'' +
+                ", euthanizedReasons='" + euthanizedReasons + '\'' +
+                ", seyStatistics='" + seyStatistics + '\'' +
+                ", extraNotes='" + extraNotes + '\'' +
+                ", createDate=" + createDate +
+                ", species=" + species +
+                ", treatmentsList=" + treatmentsList +
+                ", observationsList=" + observationsList +
+                ", people=" + people +
+                ", status=" + status +
+                '}';
+    }
 }
