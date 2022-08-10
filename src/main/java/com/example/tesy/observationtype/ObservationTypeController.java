@@ -28,18 +28,18 @@ public class ObservationTypeController {
         observationTypeService.addNewObservationTypeEntity(observationTypeEntity);
     }
 
-    @DeleteMapping(path = "{type_id}")
+    @DeleteMapping(path = "{typeId}")
     public void deleteObservationTypeEntity(
-            @PathVariable("type_id") Long type_id) {
-        observationTypeService.deleteObservationTypeEntity(type_id);
+            @PathVariable("typeId") Long typeId) {
+        observationTypeService.deleteObservationTypeEntity(typeId);
     }
 
-    @PutMapping(path = "{type_id")
+    @PutMapping(path = "{typeId}")
     public void updateObservationTypeEntity(
-            @PathVariable("type_id") Long type_id,
+            @PathVariable("typeId") Long typeId,
             @RequestParam(required = false) String obsType_name
     ) {
-        observationTypeService.update(type_id,obsType_name);
+        observationTypeService.update(typeId,obsType_name);
     }
 
 }

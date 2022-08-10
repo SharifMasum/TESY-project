@@ -16,11 +16,11 @@ public class InclassesEntity {
             generator = "inclasses_sequence"
     )
 
-    private Long inclass_id;
+    private Long inclassId;
     private String name;
 
-    public InclassesEntity(Long inclass_id, String name) {
-        this.inclass_id = inclass_id;
+    public InclassesEntity(Long inclassId, String name) {
+        this.inclassId = inclassId;
         this.name = name;
     }
 
@@ -28,12 +28,16 @@ public class InclassesEntity {
         this.name = name;
     }
 
-    public Long getInclass_id() {
-        return inclass_id;
+    public InclassesEntity() {
+
     }
 
-    public void setInclass_id(Long inclass_id) {
-        this.inclass_id = inclass_id;
+    public Long getInclassId() {
+        return inclassId;
+    }
+
+    public void setInclassId(Long inclassId) {
+        this.inclassId = inclassId;
     }
 
     public String getName() {
@@ -47,7 +51,7 @@ public class InclassesEntity {
     @Override
     public String toString() {
         return "InclassesEntity{" +
-                "inclass_id=" + inclass_id +
+                "inclassId=" + inclassId +
                 ", name='" + name + '\'' +
                 '}';
     }

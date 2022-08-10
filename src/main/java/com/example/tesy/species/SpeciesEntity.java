@@ -16,11 +16,11 @@ public class SpeciesEntity {
             generator = "species_sequence"
     )
 
-    private Long species_id;
+    private Long speciesId;
     private String name;
 
-    public SpeciesEntity(Long species_id, String name) {
-        this.species_id = species_id;
+    public SpeciesEntity(Long speciesId, String name) {
+        this.speciesId = speciesId;
         this.name = name;
     }
 
@@ -28,12 +28,16 @@ public class SpeciesEntity {
         this.name = name;
     }
 
-    public Long getSpecies_id() {
-        return species_id;
+    public SpeciesEntity() {
+
     }
 
-    public void setSpecies_id(Long species_id) {
-        this.species_id = species_id;
+    public Long getSpeciesId() {
+        return speciesId;
+    }
+
+    public void setSpeciesId(Long speciesId) {
+        this.speciesId = speciesId;
     }
 
     public String getName() {
@@ -47,7 +51,7 @@ public class SpeciesEntity {
     @Override
     public String toString() {
         return "SpeciesEntity{" +
-                "species_id=" + species_id +
+                "speciesId=" + speciesId +
                 ", name='" + name + '\'' +
                 '}';
     }

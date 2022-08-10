@@ -30,16 +30,16 @@ public class SpeciesObsJoinController {
         speciesObsJoinService.addNewSpeciesObsJoinEntity(observationTypeEntity);
     }
 
-    @DeleteMapping(path = "{speciesObsJoin_id}")
+    @DeleteMapping(path = "{speciesObsJoinId}")
     public void deleteObservationTypeEntity(
-            @PathVariable("speciesObsJoin_id") Long type_id) {
-        speciesObsJoinService.deleteSpeciesObsJoinEntity(type_id);
+            @PathVariable("speciesObsJoinId") Long typeId) {
+        speciesObsJoinService.deleteSpeciesObsJoinEntity(typeId);
     }
 
-    @PutMapping(path = "{speciesObsJoin_id")
+    @PutMapping(path = "{speciesObsJoinId}")
     public void updateObservationTypeEntity(
-            @PathVariable("speciesObsJoin") Long speciesObsJoin_id
+            @PathVariable("speciesObsJoin") Long speciesObsJoinId
     ) {
-        speciesObsJoinService.update(speciesObsJoin_id);
+        speciesObsJoinService.update(speciesObsJoinId);
     }
 }

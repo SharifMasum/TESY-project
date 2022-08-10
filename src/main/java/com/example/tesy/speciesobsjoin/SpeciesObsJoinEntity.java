@@ -19,20 +19,20 @@ public class SpeciesObsJoinEntity {
             strategy = GenerationType.SEQUENCE,
             generator = "speciesobsjoin_sequence"
     )
-    private Long speciesObsJoin_id;
+    private Long speciesObsJoinId;
 
 
-    @OneToMany(mappedBy = "speciesObsJoinEntity")
-    @JoinColumn(name = "observationType_id")
-    private Set<ObservationTypeEntity> observationTypeEntity;
+//    @OneToMany(mappedBy = "speciesObsJoinEntity")
+//    @JoinColumn(name = "observationTypeId")
+//    private Set<ObservationTypeEntity> observationTypeEntity;
 
     public Long getId() {
-        return speciesObsJoin_id;
+        return speciesObsJoinId;
     }
 
-    public Set<ObservationTypeEntity> getObservationTypeEntity() {
-        return observationTypeEntity;
-    }
+//    public Set<ObservationTypeEntity> getObservationTypeEntity() {
+//        return observationTypeEntity;
+//    }
 
 
 }

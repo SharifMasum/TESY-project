@@ -20,7 +20,7 @@ public class PeopleEntity {
             strategy = GenerationType.SEQUENCE,
             generator = "people_sequence"
     )
-    @Column (name = "id")
+    @Column (name = "PeopleId")
     private Long peopleId;
 
     private String username;

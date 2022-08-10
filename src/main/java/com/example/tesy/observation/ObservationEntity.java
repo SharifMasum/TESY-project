@@ -18,20 +18,20 @@ public class ObservationEntity {
             generator = "observation_sequence"
     )
 
-    private Long id;
+    private Long observationId;
 
-    @ManyToOne
-    @JoinColumn(name = "animal_entity_id")
-    private AnimalEntity animalEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "animalId")
+//    private AnimalEntity animalEntity;
 
-    public AnimalEntity getAnimalEntity() {
-        return animalEntity;
-    }
+//    public AnimalEntity getAnimalEntity() {
+//        return animalEntity;
+//   }
 
-    public void setAnimalEntity(AnimalEntity animalEntity) {
-        this.animalEntity = animalEntity;
-    }
-
-    public void setAnimal(AnimalEntity animalEntity) {
-    }
+//    public void setAnimalEntity(AnimalEntity animalEntity) {
+//        this.animalEntity = animalEntity;
+//    }
+//
+//    public void setAnimal(AnimalEntity animalEntity) {
+//    }
 }

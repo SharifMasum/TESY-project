@@ -28,7 +28,7 @@ public class AnimalEntity {
             generator = "animal_sequence"
     )
 
-    private Long id;
+    private Long animalId;
 
     @SequenceGenerator(
             name = "tesyId_sequence",
@@ -106,47 +106,47 @@ public class AnimalEntity {
 
     @ManyToOne(cascade = {CascadeType.ALL})
 
-    @JoinColumn(name = "species_ID")
+    @JoinColumn(name = "speciesID")
     private SpeciesEntity species;
 
     // @Embedded
     // private Species species;
 /// relations
-    @OneToMany(
-            mappedBy = "animal",
-            cascade = CascadeType.ALL
-    )
-    private List<TreatmentEntity> treatmentsList = new ArrayList<TreatmentEntity>();
+//    @OneToMany(
+//            mappedBy = "AnimalEntity",
+//            cascade = CascadeType.ALL
+//    )
+//    private List<TreatmentEntity> treatmentsList = new ArrayList<TreatmentEntity>();
 
     public AnimalEntity() {
 
     }
 
-    public void addItem(TreatmentEntity item) {
+//    public void addItem(TreatmentEntity item) {
+//
+//        this.treatmentsList.add(item);
+//
+//        item.setAnimal(this);
 
-        this.treatmentsList.add(item);
+//    }
 
-        item.setAnimal(this);
+//    @OneToMany(mappedBy = "AnimalEntity",
+//            cascade = CascadeType.ALL,
+//            orphanRemoval = true)
+//    private List<ObservationEntity> observationsList = new ArrayList<>();
+//    public void addItem(ObservationEntity item) {
+//
+//        this.observationsList.add(item);
 
-    }
-
-    @OneToMany(mappedBy = "animal",
-            cascade = CascadeType.ALL,
-            orphanRemoval = true)
-    private List<ObservationEntity> observationsList = new ArrayList<>();
-    public void addItem(ObservationEntity item) {
-
-        this.observationsList.add(item);
-
-        item.setAnimal(this);
-
-    }
+//        item.setAnimal(this);
+//
+//    }
 
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
     )
-    @JoinColumn(name = "personId")
+//    @JoinColumn(name = "peopleId")
     private PeopleEntity people;
 
     @ManyToOne(
@@ -164,8 +164,8 @@ public class AnimalEntity {
         this.species = species;
     }
 
-    public AnimalEntity(Long id, String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
-        this.id = id;
+    public AnimalEntity(Long animalId, String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
+        this.animalId = animalId;
         this.tesyId = tesyId;
         this.inDate = inDate;
         this.inTesyDate = inTesyDate;
@@ -183,8 +183,8 @@ public class AnimalEntity {
         this.extraNotes = extraNotes;
         this.createDate = createDate;
         this.species = species;
-        this.treatmentsList = treatmentsList;
-        this.observationsList = observationsList;
+//        this.treatmentsList = treatmentsList;
+//        this.observationsList = observationsList;
         this.people = people;
         this.status = status;
     }
@@ -207,8 +207,8 @@ public class AnimalEntity {
         this.extraNotes = extraNotes;
         this.createDate = createDate;
         this.species = species;
-        this.treatmentsList = treatmentsList;
-        this.observationsList = observationsList;
+//        this.treatmentsList = treatmentsList;
+//        this.observationsList = observationsList;
         this.people = people;
         this.status = status;
     }
@@ -343,21 +343,21 @@ public class AnimalEntity {
         this.createDate = createDate;
     }
 
-    public List<TreatmentEntity> getTreatmentsList() {
-        return treatmentsList;
-    }
+//    public List<TreatmentEntity> getTreatmentsList() {
+//        return treatmentsList;
+//    }
+//
+//    public void setTreatmentsList(List<TreatmentEntity> treatmentsList) {
+//        this.treatmentsList = treatmentsList;
+//    }
 
-    public void setTreatmentsList(List<TreatmentEntity> treatmentsList) {
-        this.treatmentsList = treatmentsList;
-    }
-
-    public List<ObservationEntity> getObservationsList() {
-        return observationsList;
-    }
-
-    public void setObservationsList(List<ObservationEntity> observationsList) {
-        this.observationsList = observationsList;
-    }
+//    public List<ObservationEntity> getObservationsList() {
+//        return observationsList;
+//    }
+//
+//    public void setObservationsList(List<ObservationEntity> observationsList) {
+//        this.observationsList = observationsList;
+//    }
 
     public PeopleEntity getPeople() {
         return people;
@@ -378,8 +378,8 @@ public class AnimalEntity {
     @Override
     public String toString() {
         return "AnimalEntity{" +
-                "id=" + id +
-                ", tesyId='" + tesyId + '\'' +
+                "animalId=" + animalId +
+                ", tesy='" + tesyId + '\'' +
                 ", inDate=" + inDate +
                 ", inTesyDate=" + inTesyDate +
                 ", outTesyDate=" + outTesyDate +
@@ -396,8 +396,8 @@ public class AnimalEntity {
                 ", extraNotes='" + extraNotes + '\'' +
                 ", createDate=" + createDate +
                 ", species=" + species +
-                ", treatmentsList=" + treatmentsList +
-                ", observationsList=" + observationsList +
+//                ", treatmentsList=" + treatmentsList +
+//                ", observationsList=" + observationsList +
                 ", people=" + people +
                 ", status=" + status +
                 '}';

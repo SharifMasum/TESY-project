@@ -21,7 +21,7 @@ public class TreatmentEntity {
             generator = "treatment_sequence"
     )
 
-    private Long id;
+    private Long treatmentId;
 
     //When performend
     private Date date;
@@ -41,8 +41,8 @@ public class TreatmentEntity {
 
     )
     @JoinColumn(
-            name = "animal_id",
-            referencedColumnName = "animalId"
+            name = "AnimalId",
+            referencedColumnName = "AnimalId"
 
     )
     private AnimalEntity animal;
@@ -52,9 +52,8 @@ public class TreatmentEntity {
             fetch = FetchType.EAGER
     )
     @JoinColumn(
-            name = "person_id",
-            referencedColumnName = "personId"
-
+            name ="peopleId",
+            referencedColumnName = "peopleId"
     )
     private PeopleEntity people;
 
@@ -65,8 +64,8 @@ public class TreatmentEntity {
     public void setAnimal(AnimalEntity animalEntity) {
     }
 
-    public TreatmentEntity(Long id, Date date, String description, Double amountOfMedication, AnimalEntity animal, PeopleEntity people) {
-        this.id = id;
+    public TreatmentEntity(Long treatmentId, Date date, String description, Double amountOfMedication, AnimalEntity animal, PeopleEntity people) {
+        this.treatmentId = treatmentId;
         this.date = date;
         this.description = description;
         this.amountOfMedication = amountOfMedication;
@@ -121,7 +120,7 @@ public class TreatmentEntity {
     @Override
     public String toString() {
         return "TreatmentEntity{" +
-                "id=" + id +
+                "treatmentId=" + treatmentId +
                 ", date=" + date +
                 ", description='" + description + '\'' +
                 ", amountOfMedication=" + amountOfMedication +

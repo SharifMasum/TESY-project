@@ -20,16 +20,16 @@ public class ObservationTypeEntity {
             generator = "observationtype_sequence"
     )
 
-    private Long type_id;
+    private Long typeId;
 
     private String obsType_name;
 
-    @ManyToOne
-    @JoinColumn(name = "speciesObsJoin_entity_id")
-    private SpeciesObsJoinEntity speciesObsJoinEntity;
+//    @ManyToOne
+//    @JoinColumn(name = "speciesObsJoin_entityId")
+//    private SpeciesObsJoinEntity speciesObsJoinEntity;
 
-    public Long getId() {
-        return type_id;
+    public Long getTypeId() {
+        return typeId;
     }
 
     public String getName() {
@@ -40,8 +40,8 @@ public class ObservationTypeEntity {
         this.obsType_name = obsType_name;
     }
 
-    public SpeciesObsJoinEntity getSpeciesObsJoinEntity() {
-        return speciesObsJoinEntity;
-    }
+//    public SpeciesObsJoinEntity getSpeciesObsJoinEntity() {
+//        return speciesObsJoinEntity;
+//    }
 
 }

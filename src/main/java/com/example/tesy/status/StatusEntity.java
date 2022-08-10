@@ -15,11 +15,11 @@ public class StatusEntity {
             strategy = GenerationType.SEQUENCE,
             generator = "status_sequence"
     )
-    private Long status_id;
+    private Long statusId;
     private String name;
 
-    public StatusEntity(Long status_id, String name) {
-        this.status_id = status_id;
+    public StatusEntity(Long statusId, String name) {
+        this.statusId = statusId;
         this.name = name;
     }
 
@@ -27,12 +27,16 @@ public class StatusEntity {
         this.name = name;
     }
 
-    public Long getStatus_id() {
-        return status_id;
+    public StatusEntity() {
+
     }
 
-    public void setStatus_id(Long status_id) {
-        this.status_id = status_id;
+    public Long getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Long statusId) {
+        this.statusId = statusId;
     }
 
     public String getName() {
@@ -46,7 +50,7 @@ public class StatusEntity {
     @Override
     public String toString() {
         return "StatusEntity{" +
-                "status_id=" + status_id +
+                "statusId=" + statusId +
                 ", name='" + name + '\'' +
                 '}';
     }

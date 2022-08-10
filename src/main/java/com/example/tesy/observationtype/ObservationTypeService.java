@@ -22,9 +22,9 @@ public class ObservationTypeService {
         return observationTypeRepository.findAll();
     }
 
-    public void deleteObservationTypeEntity(Long type_id) {
+    public void deleteObservationTypeEntity(Long typeId) {
     }
 
-    public void update(Long type_id, String obsType_name) {
+    public void update(Long typeId, String obsType_name) {
     }
 }
