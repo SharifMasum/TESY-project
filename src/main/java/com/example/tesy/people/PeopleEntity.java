@@ -1,6 +1,10 @@
 package com.example.tesy.people;
 
+import com.example.tesy.role.RoleEntity;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity(name = "People")
@@ -28,6 +32,14 @@ public class PeopleEntity {
     private String passwd;
 
     private String realName;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "People_Role",
+            joinColumns = {@JoinColumn(name = "PeopleId")},
+            inverseJoinColumns = {@JoinColumn(name = "RoleId")}
+    )
+    private Set<RoleEntity> assignedRole = new HashSet<RoleEntity>();
 
     public PeopleEntity(Long peopleId,
                         String username,
@@ -77,6 +89,14 @@ public class PeopleEntity {
         this.realName = realName;
     }
 
+    public void setAssignedRole(RoleEntity role) {
+        assignedRole.add(role);
+    }
+
+    public Set<RoleEntity> getAssignedRole() {
+        return assignedRole;
+    }
+
     @Override
     public String toString() {
         return "PeopleEntity{" +
@@ -84,6 +104,7 @@ public class PeopleEntity {
                 ", username='" + username + '\'' +
                 ", passwd='" + passwd + '\'' +
                 ", realName='" + realName + '\'' +
+                ", assignedRole=" + assignedRole +
                 '}';
     }
 }
