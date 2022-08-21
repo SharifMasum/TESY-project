@@ -3,7 +3,7 @@ package com.example.tesy.people;
 import com.example.tesy.role.RoleEntity;
 import com.example.tesy.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

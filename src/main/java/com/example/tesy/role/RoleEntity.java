@@ -29,12 +29,8 @@ public class RoleEntity {
     @Column (name = "RoleName")
     private String roleName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "Role_Right",
-            joinColumns = {@JoinColumn(name = "RoleId")},
-            inverseJoinColumns = {@JoinColumn(name = "RightId")}
-    )
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     private Set<RightEntity> assignedRight = new HashSet<RightEntity>();
 
 

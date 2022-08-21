@@ -33,7 +33,8 @@ public class PeopleEntity {
 
     private String realName;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER)
     @JoinTable(
             name = "People_Role",
             joinColumns = {@JoinColumn(name = "PeopleId")},
@@ -65,11 +66,11 @@ public class PeopleEntity {
         return peopleId;
     }
 
-    public String getUsername() {
+    public  String getUsername() {
         return username;
     }
 
-    public String getPasswd() {
+    public  String getPasswd() {
         return passwd;
     }
 
