@@ -39,7 +39,7 @@ public class ObservationTypeController {
             @PathVariable("typeId") Long typeId,
             @RequestParam(required = false) String obsType_name
     ) {
-        observationTypeService.update(typeId,obsType_name);
+        observationTypeService.updateObservationTypeEntity(typeId,obsType_name);
     }
 
 }

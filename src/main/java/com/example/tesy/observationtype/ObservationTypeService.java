@@ -25,6 +25,6 @@ public class ObservationTypeService {
     public void deleteObservationTypeEntity(Long typeId) {
     }
 
-    public void update(Long typeId, String obsType_name) {
+    public void updateObservationTypeEntity(Long typeId, String obsType_name) {
     }
 }

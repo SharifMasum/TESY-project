@@ -1,6 +1,5 @@
 package com.example.tesy.speciesobsjoin;
 
-import com.example.tesy.observationtype.ObservationTypeEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +19,12 @@ public class SpeciesObsJoinService {
         return speciesObsJoinRepository.findAll();
     }
 
-    public void addNewSpeciesObsJoinEntity(ObservationTypeEntity observationTypeEntity) {
+    public void addNewSpeciesObsJoinEntity(SpeciesObsJoinEntity speciesObsJoinEntity) {
     }
 
-    public void deleteSpeciesObsJoinEntity(Long type_id) {
+    public void deleteSpeciesObsJoinEntity(Long speciesObsJoinId) {
     }
 
-    public void update(Long speciesObsJoin_id) {
+    public void updateSpeciesObsJoinEntity(Long speciesObsJoinId) {
     }
 }
