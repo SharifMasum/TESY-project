@@ -1,6 +1,9 @@
 package com.example.tesy.people;
 
+import com.example.tesy.role.RoleEntity;
+import com.example.tesy.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,11 +14,15 @@ public class PeopleController {
 
     private final PeopleService peopleService;
     private final PeopleRepository peopleRepository;
+
+    private final RoleRepository roleRepository;
     @Autowired
     public PeopleController(PeopleService peopleService,
-                            PeopleRepository peopleRepository) {
+                            PeopleRepository peopleRepository,
+                            RoleRepository roleRepository) {
         this.peopleService = peopleService;
         this.peopleRepository = peopleRepository;
+        this.roleRepository = roleRepository;
     }
 
     @GetMapping
@@ -34,7 +41,6 @@ public class PeopleController {
 
     @PostMapping
     public void registerNewPeople(@RequestBody PeopleEntity people) {
-
         peopleService.addNewPeople(people);
     }
 
@@ -50,6 +56,17 @@ public class PeopleController {
             @RequestParam(required = false) String passwd,
             @RequestParam(required = false) String realName){
         peopleService.updatePeople(peopleId, username, passwd, realName);
+    }
+
+    @PutMapping(path = "/{peopleId}/role/{roleId}")
+    PeopleEntity assignRoleTopeople(
+            @PathVariable Long peopleId,
+            @PathVariable Integer roleId
+    ) {
+        PeopleEntity people = peopleRepository.getReferenceById(peopleId);
+        RoleEntity role = roleRepository.findRoleByRoleId(roleId);
+        people.setAssignedRole(role);
+        return  peopleRepository.save(people);
     }
 
 }

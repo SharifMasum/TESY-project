@@ -1,6 +1,7 @@
 package com.example.tesy.people;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -12,10 +13,13 @@ import java.util.Optional;
 public class PeopleService {
 
     private final PeopleRepository peopleRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
-    public PeopleService(PeopleRepository peopleRepository) {
+    public PeopleService(PeopleRepository peopleRepository, PasswordEncoder passwordEncoder) {
         this.peopleRepository = peopleRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     public List<PeopleEntity> getPeople(){
@@ -25,6 +29,9 @@ public class PeopleService {
 
     public void addNewPeople(PeopleEntity people) {
         System.out.println(people);
+        String rowPasswd =people.getPasswd();
+        people.setPasswd(passwordEncoder.encode(rowPasswd));
+
 
         Optional<PeopleEntity> peopleOptional = peopleRepository.findPeopleByUsername(people.getUsername());
         if (peopleOptional.isPresent()) {
