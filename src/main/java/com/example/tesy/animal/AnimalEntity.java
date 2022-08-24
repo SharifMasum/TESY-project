@@ -60,8 +60,8 @@ public class AnimalEntity {
 
 
 
-    /*private String ageClass;
-    public <Pregnant, Adult, Young, Dam> void ageClass
+    private String ageClass;
+    /*public <Pregnant, Adult, Young, Dam> void ageClass
     (Pregnant pregnant, Adult adult, Young young, Dam dam)*/
 
 
@@ -142,13 +142,13 @@ public class AnimalEntity {
 //
 //    }
 
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-//    @JoinColumn(name = "peopleId")
-    private PeopleEntity people;
-
+    /*  @ManyToOne(
+              cascade = CascadeType.ALL,
+              fetch = FetchType.EAGER
+      )
+  //    @JoinColumn(name = "peopleId")
+      private PeopleEntity people;
+  */
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER
@@ -164,7 +164,8 @@ public class AnimalEntity {
         this.species = species;
     }
 
-    public AnimalEntity(Long animalId, String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
+    public AnimalEntity(Long animalId, String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList
+            /*, PeopleEntity people*/, StatusEntity status) {
         this.animalId = animalId;
         this.tesyId = tesyId;
         this.inDate = inDate;
@@ -185,11 +186,12 @@ public class AnimalEntity {
         this.species = species;
 //        this.treatmentsList = treatmentsList;
 //        this.observationsList = observationsList;
-        this.people = people;
+        // this.people = people;
         this.status = status;
     }
 
-    public AnimalEntity(String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList, PeopleEntity people, StatusEntity status) {
+    public AnimalEntity(String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList
+            /*, PeopleEntity people*/, StatusEntity status) {
         this.tesyId = tesyId;
         this.inDate = inDate;
         this.inTesyDate = inTesyDate;
@@ -209,7 +211,7 @@ public class AnimalEntity {
         this.species = species;
 //        this.treatmentsList = treatmentsList;
 //        this.observationsList = observationsList;
-        this.people = people;
+        //   this.people = people;
         this.status = status;
     }
     @JsonBackReference
@@ -359,13 +361,15 @@ public class AnimalEntity {
 //        this.observationsList = observationsList;
 //    }
 
-    public PeopleEntity getPeople() {
+   /* public PeopleEntity getPeople() {
         return people;
     }
-
-    public void setPeople(PeopleEntity people) {
+*/
+   /* public void setPeople(PeopleEntity people) {
         this.people = people;
     }
+    */
+
 
     public StatusEntity getStatus() {
         return status;
@@ -398,7 +402,7 @@ public class AnimalEntity {
                 ", species=" + species +
 //                ", treatmentsList=" + treatmentsList +
 //                ", observationsList=" + observationsList +
-                ", people=" + people +
+                // ", people=" + people +
                 ", status=" + status +
                 '}';
     }
