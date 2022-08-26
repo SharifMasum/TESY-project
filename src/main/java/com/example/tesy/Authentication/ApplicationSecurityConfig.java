@@ -1,5 +1,6 @@
 package com.example.tesy.Authentication;
 
+import com.example.tesy.Authentication.jwt.CorsFilter;
 import com.example.tesy.Authentication.jwt.JwtTokenVerifier;
 import com.example.tesy.Authentication.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,28 +33,30 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
-        ApplicationUserService applicationUserService) {
+                                     ApplicationUserService applicationUserService) {
         this.passwordEncoder = passwordEncoder;
         this.applicationUserService = applicationUserService;
     }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors()
                 .and()
-                  //              .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+                //              .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
                 .csrf().disable()
-        // This Section is For JWT ************
+                // This Section is For JWT ************
                 .sessionManagement()
-                    .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager()))
+                .addFilterAfter(new CorsFilter(),JwtUsernameAndPasswordAuthenticationFilter.class)
                 .addFilterAfter(new JwtTokenVerifier(),JwtUsernameAndPasswordAuthenticationFilter.class)
 
-        //End of JWT Section ***********
-                 .authorizeRequests()
-                    .antMatchers("/","index","/css/*","/js/*","/built/**","/login*").permitAll()
+                //End of JWT Section ***********
+                .authorizeRequests()
+                .antMatchers("/","index","/css/*","/js/*","/built/**","/login*").permitAll()
                 .anyRequest()
                 .authenticated();
     /*
