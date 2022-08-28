@@ -1,10 +1,8 @@
 package com.example.tesy.Authentication;
 
-import com.example.tesy.Authentication.JwtReact.JwtAuthenticationFilter;
 import com.example.tesy.Authentication.JwtReact.JwtTokenVerifierFilter;
 import com.example.tesy.Authentication.jwt.CorsFilter1;
 import com.example.tesy.Authentication.jwt.JwtTokenVerifier;
-import com.example.tesy.Authentication.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
