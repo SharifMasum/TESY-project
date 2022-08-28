@@ -18,10 +18,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @Component
 @Configuration
@@ -70,7 +72,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
              //End of JWT Section ***********
 
                 .authorizeRequests()
-                .antMatchers("/","index","/css/*","/js/*","/built/**","/auth/**").permitAll()
+                .antMatchers("/","index","/css/*","/js/*","/built/**","/api/auth/**").permitAll()
                 .anyRequest()
                 .authenticated();
 
@@ -99,7 +101,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     // ** Start of CORS Filter *****
 
-    @Bean
+
+
+    /*
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source =
                 new UrlBasedCorsConfigurationSource();
@@ -112,6 +116,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         return new CorsFilter(source);
     }
+
+     */
     // ** End of CORS Filter *****
 
 
