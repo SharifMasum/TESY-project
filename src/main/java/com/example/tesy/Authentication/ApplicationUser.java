@@ -24,7 +24,7 @@ public class ApplicationUser implements UserDetails {
         Set<RoleEntity> roles = user.getAssignedRole();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
         for (RoleEntity role : roles){
-            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+            authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName().toUpperCase()));
         }
     return authorities;
     }

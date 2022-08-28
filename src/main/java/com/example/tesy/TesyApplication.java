@@ -14,17 +14,17 @@ public class TesyApplication {
 		SpringApplication.run(TesyApplication.class, args);
 	}
 
+
 	//  Enable CRPS *******
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
 		return new WebMvcConfigurer() {
 			@Override
 			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/*").allowedMethods("*").allowedOrigins("*");
+				registry.addMapping("/**").allowedMethods("*").allowedOrigins("*");
 			}
 		};
 	}
-
 	// End of CROS *********
 
 }

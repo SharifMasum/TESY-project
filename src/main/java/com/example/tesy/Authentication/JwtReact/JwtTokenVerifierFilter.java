@@ -1,4 +1,4 @@
-package com.example.tesy.Authentication.jwt;
+package com.example.tesy.Authentication.JwtReact;
 
 import com.google.common.base.Strings;
 import io.jsonwebtoken.Claims;
@@ -23,54 +23,48 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+
 @Component
-public class JwtTokenVerifier extends OncePerRequestFilter {
-    @Override
+public class JwtTokenVerifierFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-
-        System.out.println("test JWT Token Verifier !");
-
-        String authorizationHeader = request.getHeader("Authorization");
+        String authorizationHeader = request.getHeader("authorization");
 
         if (Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
         }
-        String token = authorizationHeader.replace ("Bearer ","");
+
+        String token = authorizationHeader.replace("Bearer ","");
+
         try {
-            System.out.println("we have a token !");
+
             String secretKey = "testy354jfiuufjcoof6securitytesty3546securitytesty3546securitytesty3546securitytesty3546security";
 
+            Jws<Claims> claimsJws = Jwts.parser()
+                    .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
+                    .parseClaimsJws(token);
 
-            BuildClaim(token, secretKey);
+            Claims body = claimsJws.getBody();
+            String user = body.getSubject();
+            var authorities = (List<Map<String, String>>)body.get("authorities");
+
+            Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
+                    .map(m -> new SimpleGrantedAuthority(m.get("authority")))
+                    .collect(Collectors.toSet());
+
+            Authentication authentication =new UsernamePasswordAuthenticationToken(
+                    user,
+                    null,
+                    simpleGrantedAuthorities
+            );
+            SecurityContextHolder.getContext().setAuthentication(authentication);
         } catch (JwtException e){
             throw new IllegalStateException(String.format("Token % cannot be trusted!",token));
         }
-        
+
         filterChain.doFilter(request,response);
-}
-
-    public static void BuildClaim(String token, String secretKey) {
-        Jws<Claims> claimsJws = Jwts.parser()
-                .setSigningKey(Keys.hmacShaKeyFor(secretKey.getBytes()))
-                .parseClaimsJws(token);
-
-        Claims body = claimsJws.getBody();
-        String user = body.getSubject();
-        var authorities = (List<Map<String, String>>)body.get("authorities");
-
-        Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
-                .map(m -> new SimpleGrantedAuthority(m.get("authority")))
-                .collect(Collectors.toSet());
-
-        Authentication authentication =new UsernamePasswordAuthenticationToken(
-                user,
-                null,
-                simpleGrantedAuthorities
-        );
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-
     }
+
 }
