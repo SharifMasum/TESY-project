@@ -3,8 +3,12 @@ package com.example.tesy.Authentication.JwtReact;
 import com.example.tesy.Authentication.ApplicationUser;
 import com.example.tesy.Authentication.JwtReact.JwtUtil;
 import com.example.tesy.Authentication.jwt.UsernameAndPasswordAuthenticationRequest;
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -22,10 +26,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.AbstractList;
 import java.util.Date;
+import java.util.List;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
     @Autowired
@@ -61,7 +67,7 @@ public class AuthenticationController {
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION ,token)
                     .contentType(MediaType.valueOf("application/json"))
-                    .body(applicationUser);
+                    .body(List.of(token, applicationUser.getUsername(),applicationUser.getAuthorities()));
 
 
 
