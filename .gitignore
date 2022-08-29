@@ -1,6 +1,5 @@
 HELP.md
 target/
-resources/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
@@ -34,4 +33,4 @@ build/
 .vscode/
 
 ### Database configuration
-src/main/resources/application.properties
+target/application.properties
