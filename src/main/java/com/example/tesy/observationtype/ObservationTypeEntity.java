@@ -1,5 +1,6 @@
 package com.example.tesy.observationtype;
 
+import com.example.tesy.observation.ObservationEntity;
 import com.example.tesy.speciesobsjoin.SpeciesObsJoinEntity;
 
 import javax.persistence.*;
@@ -24,24 +25,44 @@ public class ObservationTypeEntity {
 
     private String obsType_name;
 
-//    @ManyToOne
-//    @JoinColumn(name = "speciesObsJoin_entityId")
-//    private SpeciesObsJoinEntity speciesObsJoinEntity;
+    @ManyToMany
+    @JoinTable(
+            name = "observation_made",
+            joinColumns = @JoinColumn(name = "typeId"),
+            inverseJoinColumns = @JoinColumn(name = "speciesObsJoinId")
+    )
+    private Set<SpeciesObsJoinEntity> observationIncluded = new HashSet<>();
+
+    public ObservationTypeEntity(Long typeId, String obsType_name) {
+        this.typeId = typeId;
+        this.obsType_name= obsType_name;
+    }
+
+    public ObservationTypeEntity() {
+
+    }
 
     public Long getTypeId() {
         return typeId;
     }
 
-    public String getName() {
+    public String getObsType_name() {
         return obsType_name;
+    }
+
+    public void setTypeId(Long typeId) {
+        this.typeId = typeId;
     }
 
     public void setObsType_name(String obsType_name) {
         this.obsType_name = obsType_name;
     }
 
-//    public SpeciesObsJoinEntity getSpeciesObsJoinEntity() {
-//        return speciesObsJoinEntity;
-//    }
-
+    @Override
+    public String toString() {
+        return "ObservationTypeEntity{" +
+                "typeId=" + typeId +
+                ", obsType_name=" + obsType_name +
+                '}';
+    }
 }

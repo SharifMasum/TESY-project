@@ -1,6 +1,8 @@
 package com.example.tesy.speciesobsjoin;
 
+import com.example.tesy.observation.ObservationEntity;
 import com.example.tesy.observationtype.ObservationTypeEntity;
+import com.example.tesy.species.SpeciesEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -21,18 +23,45 @@ public class SpeciesObsJoinEntity {
     )
     private Long speciesObsJoinId;
 
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "specisId")
+    private SpeciesEntity species;
 
-//    @OneToMany(mappedBy = "speciesObsJoinEntity")
-//    @JoinColumn(name = "observationTypeId")
-//    private Set<ObservationTypeEntity> observationTypeEntity;
+    public SpeciesEntity getSpecies() {
+        return species;
+    }
 
+    public void setSpecies(SpeciesEntity species) {
+        this.species = species;
+    }
+
+     @ManyToMany
+     @JoinTable(
+             name = "species_observation",
+             joinColumns = @JoinColumn(name = "speciesObsJoinId"),
+             inverseJoinColumns = @JoinColumn(name = "observationId")
+     )
+    private Set<ObservationEntity> addedObservation = new HashSet<>();
+
+    public SpeciesObsJoinEntity() {
+
+    }
+    public SpeciesObsJoinEntity(Long speciesObsJoinId) {
+        this.speciesObsJoinId = speciesObsJoinId;
+    }
     public Long getId() {
         return speciesObsJoinId;
     }
 
-//    public Set<ObservationTypeEntity> getObservationTypeEntity() {
-//        return observationTypeEntity;
-//    }
+    public void setSpeciesObsJoinId(Long speciesObsJoinId) {
+        this.speciesObsJoinId = speciesObsJoinId;
+    }
 
+    @Override
+    public String toString() {
+        return "SpeciesObsJoinEntity{" +
+                "speciesObsJoinId=" + speciesObsJoinId +
+                '}';
+    }
 
 }
