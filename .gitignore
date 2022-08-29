@@ -32,5 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-### Database configuration
-target/application.properties
+/src/main/java/com/example/tesy/Authentication/JwtReact/JwtUtil.java

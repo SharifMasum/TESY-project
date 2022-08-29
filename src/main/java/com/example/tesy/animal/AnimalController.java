@@ -13,6 +13,12 @@ public class AnimalController {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    private final AnimalService animalService;
+
+    public AnimalController(AnimalService animalService) {
+        this.animalService = animalService;
+    }
     // Create animal
     @PostMapping
     public AnimalEntity addAnimal (@RequestBody AnimalEntity animal){
@@ -22,7 +28,7 @@ public class AnimalController {
     //Get for all
     @GetMapping
     public List<AnimalEntity> findAnimals (){
-        return animalRepository.findAll();
+        return animalService.getAnimalEntities();
     }
 
     //Get by id

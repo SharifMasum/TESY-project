@@ -14,7 +14,6 @@ public class AnimalService {
     private final AnimalRepository animalRepository;
 
     @Autowired
-
     public AnimalService (AnimalRepository animalRepository){
         this.animalRepository = animalRepository;
 
@@ -22,7 +21,7 @@ public class AnimalService {
     public void addNewAnimalEntity(AnimalEntity animalEntity){
 
     }
-    public List<AnimalEntity> getAnimalEntitys(){
+    public List<AnimalEntity> getAnimalEntities(){
         return animalRepository.findAll();
     }
     public void deleteAnimalEntity(Long animalId){

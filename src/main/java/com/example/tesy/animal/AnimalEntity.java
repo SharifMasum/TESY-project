@@ -214,6 +214,15 @@ public class AnimalEntity {
         //   this.people = people;
         this.status = status;
     }
+
+    public Long getAnimalId() {
+        return animalId;
+    }
+
+    public String getAgeClass() {
+        return ageClass;
+    }
+
     @JsonBackReference
 
 
@@ -406,4 +415,6 @@ public class AnimalEntity {
                 ", status=" + status +
                 '}';
     }
+
+
 }
