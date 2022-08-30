@@ -1,9 +1,8 @@
-package com.example.tesy.role;
+package com.example.tesy.inclasses.role;
 
 
 import com.example.tesy.right.RightEntity;
 import com.example.tesy.right.RightRepository;
-import com.example.tesy.right.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -68,6 +67,16 @@ public class RoleController {
         RightEntity right = rightRepository.findRightByRightId(rightId);
         role.setAssignedRight(right);
         return  roleRepository.save(role);
+    }
+    @DeleteMapping(path = "/{roleId}/right/{rightId}")
+    RoleEntity deleteRightFromRole(
+            @PathVariable Integer roleId,
+            @PathVariable Integer rightId
+    ) {
+        RoleEntity role = roleRepository.getReferenceById(roleId);
+        RightEntity right = rightRepository.findRightByRightId(rightId);
+        role.delAssignedRight(right);
+        return roleRepository.save(role);
     }
 
 }

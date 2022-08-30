@@ -1,15 +1,14 @@
 package com.example.tesy.Authentication;
 
 import com.example.tesy.people.PeopleEntity;
-import com.example.tesy.role.RoleEntity;
+import com.example.tesy.right.RightEntity;
+import com.example.tesy.inclasses.role.RoleEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class ApplicationUser implements UserDetails {
 
@@ -23,10 +22,17 @@ public class ApplicationUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<RoleEntity> roles = user.getAssignedRole();
         List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+
         for (RoleEntity role : roles){
+            Set<RightEntity> rights = role.getAssignedRight().stream().collect(Collectors.toSet());
+
+            for (RightEntity right: rights){
+
+                authorities.add(new SimpleGrantedAuthority(right.getRightName()));
+            }
             authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleName().toUpperCase()));
         }
-    return authorities;
+        return authorities;
     }
 
     @Override
@@ -37,7 +43,7 @@ public class ApplicationUser implements UserDetails {
     @Override
     public String getUsername() {
 
-    return user.getUsername();
+        return user.getUsername();
     }
 
     @Override

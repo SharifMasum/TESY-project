@@ -1,7 +1,5 @@
-package com.example.tesy.role;
+package com.example.tesy.inclasses.role;
 
-import com.example.tesy.right.RightEntity;
-import com.example.tesy.right.RightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

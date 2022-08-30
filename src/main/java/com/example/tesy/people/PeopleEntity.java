@@ -1,7 +1,7 @@
 package com.example.tesy.people;
 
 import com.example.tesy.observation.ObservationEntity;
-import com.example.tesy.role.RoleEntity;
+import com.example.tesy.inclasses.role.RoleEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -110,6 +110,10 @@ public class PeopleEntity {
         return assignedRole;
     }
 
+    public void delAssignedRole(RoleEntity role) {
+        assignedRole.remove(role);
+    }
+
     @Override
     public String toString() {
         return "PeopleEntity{" +
@@ -120,4 +124,5 @@ public class PeopleEntity {
                 ", assignedRole=" + assignedRole +
                 '}';
     }
+
 }

@@ -1,9 +1,8 @@
 package com.example.tesy.people;
 
-import com.example.tesy.role.RoleEntity;
-import com.example.tesy.role.RoleRepository;
+import com.example.tesy.inclasses.role.RoleEntity;
+import com.example.tesy.inclasses.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,6 +66,18 @@ public class PeopleController {
         RoleEntity role = roleRepository.findRoleByRoleId(roleId);
         people.setAssignedRole(role);
         return  peopleRepository.save(people);
+    }
+
+    @DeleteMapping(path = "/{peopleId}/role/{roleId}")
+    PeopleEntity deleteRoleFromPeople(
+            @PathVariable Long peopleId,
+            @PathVariable Integer roleId
+    ) {
+        PeopleEntity people = peopleRepository.getReferenceById(peopleId);
+        RoleEntity role = roleRepository.getReferenceById(roleId);
+
+        people.delAssignedRole(role);
+        return peopleRepository.save(people);
     }
 
 }

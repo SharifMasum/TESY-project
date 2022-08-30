@@ -1,4 +1,4 @@
-package com.example.tesy.role;
+package com.example.tesy.inclasses.role;
 
 import com.example.tesy.right.RightEntity;
 
@@ -66,6 +66,10 @@ public class RoleEntity {
 
     public void setAssignedRight(RightEntity right) {
         assignedRight.add(right);
+    }
+
+    public void delAssignedRight(RightEntity right) {
+        assignedRight.remove(right);
     }
 
     @Override
