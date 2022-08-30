@@ -33,6 +33,18 @@ public class ObservationTypeEntity {
     )
     private Set<SpeciesObsJoinEntity> observationIncluded = new HashSet<>();
 
+    public Set<SpeciesObsJoinEntity> getObservationIncluded() {
+        return observationIncluded;
+    }
+
+    //Relation with observation
+    @ManyToMany(mappedBy = "speciesObservation")
+    private Set<ObservationEntity> typeIncluded = new HashSet<>();
+
+    public Set<ObservationEntity> getTypeIncluded() {
+        return typeIncluded;
+    }
+
     public ObservationTypeEntity(Long typeId, String obsType_name) {
         this.typeId = typeId;
         this.obsType_name= obsType_name;

@@ -6,13 +6,12 @@ import com.example.tesy.species.SpeciesEntity;
 import com.example.tesy.status.StatusEntity;
 import com.example.tesy.treatment.TreatmentEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.CreatedDate;
 
 import javax.persistence.*;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Table
 @Entity(name="Animal")
@@ -142,13 +141,23 @@ public class AnimalEntity {
 //
 //    }
 
+
+
     /*  @ManyToOne(
-              cascade = CascadeType.ALL,
-              fetch = FetchType.EAGER
-      )
-  //    @JoinColumn(name = "peopleId")
-      private PeopleEntity people;
-  */
+                  cascade = CascadeType.ALL,
+                  fetch = FetchType.EAGER
+          )
+      //    @JoinColumn(name = "peopleId")
+          private PeopleEntity people;
+      */
+    // Relation with ObservationEntity
+    @JsonIgnore
+    @OneToMany(mappedBy = "animal")
+    private Set<ObservationEntity> observationEntity = new HashSet<>();
+
+    public Set<ObservationEntity> getObservationEntity() {
+        return observationEntity;
+    }
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER

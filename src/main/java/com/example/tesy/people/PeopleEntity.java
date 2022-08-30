@@ -1,6 +1,8 @@
 package com.example.tesy.people;
 
+import com.example.tesy.observation.ObservationEntity;
 import com.example.tesy.role.RoleEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -32,6 +34,16 @@ public class PeopleEntity {
     private String passwd;
 
     private String realName;
+
+    // Relation with Observation
+    @JsonIgnore
+    @OneToMany(mappedBy = "people")
+    private Set<ObservationEntity> observationEntity = new HashSet<>();
+
+    public Set<ObservationEntity> getObservationEntity() {
+        return observationEntity;
+    }
+
 
     @ManyToMany(cascade = CascadeType.ALL,
             fetch = FetchType.EAGER)
