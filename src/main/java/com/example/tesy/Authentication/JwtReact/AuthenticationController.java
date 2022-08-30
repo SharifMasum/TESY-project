@@ -3,6 +3,8 @@ package com.example.tesy.Authentication.JwtReact;
 import com.example.tesy.Authentication.ApplicationUser;
 import com.example.tesy.Authentication.JwtReact.JwtUtil;
 import com.example.tesy.Authentication.jwt.UsernameAndPasswordAuthenticationRequest;
+import com.example.tesy.people.PeopleEntity;
+import com.example.tesy.people.PeopleRepository;
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +31,7 @@ import java.time.LocalDate;
 import java.util.AbstractList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -36,6 +39,9 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    private PeopleRepository peopleRepository;
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -67,7 +73,7 @@ public class AuthenticationController {
             return ResponseEntity.ok()
                     .header(HttpHeaders.AUTHORIZATION ,token)
                     .contentType(MediaType.valueOf("application/json"))
-                    .body(List.of(token, applicationUser.getUsername(),applicationUser.getAuthorities()));
+                    .body(Map.of("Token",token, "username",applicationUser.getUsername(),"Authorities",applicationUser.getAuthorities(),"realName", peopleRepository.findPeopleByUsername(applicationUser.getUsername()).get().getRealName()));
 
 
 
