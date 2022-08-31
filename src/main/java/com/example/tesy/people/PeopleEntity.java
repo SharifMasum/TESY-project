@@ -1,8 +1,6 @@
 package com.example.tesy.people;
 
-import com.example.tesy.observation.ObservationEntity;
-import com.example.tesy.inclasses.role.RoleEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.tesy.role.RoleEntity;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -43,7 +41,9 @@ public class PeopleEntity {
 
     public Set<ObservationEntity> getObservationEntity() {
         return observationEntity;
-    }*/
+    }
+
+     */
 
 
     @ManyToMany(cascade = CascadeType.ALL,
