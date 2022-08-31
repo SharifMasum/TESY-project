@@ -1,4 +1,4 @@
-package com.example.tesy.inclasses.role;
+package com.example.tesy.role;
 
 import com.example.tesy.right.RightEntity;
 

@@ -1,9 +1,10 @@
-package com.example.tesy.inclasses.role;
+package com.example.tesy.role;
 
 
 import com.example.tesy.right.RightEntity;
 import com.example.tesy.right.RightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,9 +41,10 @@ public class RoleController {
     }
 
     @PostMapping
-    public void registerNewRole(@RequestBody RoleEntity role) {
+    public ResponseEntity registerNewRole(@RequestBody RoleEntity role) {
 
         roleService.addNewRole(role);
+        return ResponseEntity.ok().body(role);
     }
 
     @DeleteMapping(path = "{roleId}")
@@ -52,10 +54,10 @@ public class RoleController {
     }
 
     @PutMapping(path = "{roleId}")
-    public void editRole(
+    public ResponseEntity editRole(
             @PathVariable("roleId") Integer roleId,
-            @RequestParam(required = false) String roleName){
-        roleService.updateRole(roleId, roleName);
+            @RequestBody RoleEntity newRole) {
+        return ResponseEntity.ok().body(roleService.updateRole(roleId, newRole));
     }
 
     @PutMapping(path = "/{roleId}/right/{rightId}")

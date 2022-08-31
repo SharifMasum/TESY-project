@@ -1,8 +1,9 @@
 package com.example.tesy.people;
 
-import com.example.tesy.inclasses.role.RoleEntity;
-import com.example.tesy.inclasses.role.RoleRepository;
+import com.example.tesy.role.RoleEntity;
+import com.example.tesy.role.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class PeopleController {
         return peopleService.getPeople();
     }
 
-    @GetMapping (path = "{peopleId}")
+    @GetMapping (path = "/{peopleId}")
     public PeopleEntity getPeople(@PathVariable("peopleId") Long peopleId){
         PeopleEntity peopleEntity = getPeople().stream()
                 .filter(people -> peopleId.equals(people.getPeopleId()))
@@ -39,22 +40,21 @@ public class PeopleController {
     }
 
     @PostMapping
-    public void registerNewPeople(@RequestBody PeopleEntity people) {
+    public ResponseEntity registerNewPeople(@RequestBody PeopleEntity people) {
         peopleService.addNewPeople(people);
+        return ResponseEntity.ok().body(people);
     }
 
-    @DeleteMapping(path = "{peopleId}")
+    @DeleteMapping(path = "/{peopleId}")
     public void deletePeople(@PathVariable("peopleId") Long peopleId) {
         peopleService.deletePeople(peopleId);
     }
 
     @PutMapping(path = "{peopleId}")
-    public void editPeople(
+    public ResponseEntity editPeople(
             @PathVariable("peopleId") Long peopleId,
-            @RequestParam(required = false) String username,
-            @RequestParam(required = false) String passwd,
-            @RequestParam(required = false) String realName){
-        peopleService.updatePeople(peopleId, username, passwd, realName);
+            @RequestBody PeopleEntity newPeople){
+            return ResponseEntity.ok().body(peopleService.updatePeople(peopleId,newPeople));
     }
 
     @PutMapping(path = "/{peopleId}/role/{roleId}")

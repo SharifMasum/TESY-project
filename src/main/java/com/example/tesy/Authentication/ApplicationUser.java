@@ -2,7 +2,7 @@ package com.example.tesy.Authentication;
 
 import com.example.tesy.people.PeopleEntity;
 import com.example.tesy.right.RightEntity;
-import com.example.tesy.inclasses.role.RoleEntity;
+import com.example.tesy.role.RoleEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

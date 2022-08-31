@@ -1,6 +1,7 @@
 package com.example.tesy.right;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,8 +34,10 @@ public class RightController {
     }
 
     @PostMapping
-    public void registerNewRight(@RequestBody RightEntity rightName){
-        rightService.addNewRight(rightName);
+    public ResponseEntity registerNewRight(@RequestBody RightEntity right){
+
+        rightService.addNewRight(right);
+        return ResponseEntity.ok().body(right);
     }
 
     @DeleteMapping(path = "{rightId}")
@@ -44,9 +47,9 @@ public class RightController {
     }
 
     @PutMapping(path = "{rightId}")
-    public void editRight(
+    public ResponseEntity editRight(
             @PathVariable("rightId") Integer rightId,
-            @RequestParam(required = false) String rightName){
-        rightService.updateRight(rightId, rightName);
+            @RequestBody RightEntity newRight){
+        return ResponseEntity.ok().body(rightService.updateRight(rightId,newRight));
     }
 }

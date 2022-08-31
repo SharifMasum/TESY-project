@@ -1,4 +1,4 @@
-package com.example.tesy.inclasses.role;
+package com.example.tesy.role;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,14 +22,17 @@ public class RoleService {
         return roleRepository.findAll();
     }
 
-    public void addNewRole(RoleEntity role) {
-        System.out.println(role);
+    public RoleEntity addNewRole(RoleEntity role) {
 
         Optional<RoleEntity> roleOptional = roleRepository.findRoleByRoleName(role.getRoleName());
         if (roleOptional.isPresent()) {
-            throw new IllegalStateException("This role is registered before !");
+            throw new IllegalStateException("This role is registered before!");
         }
-        roleRepository.save(role);
+        if (role.getRoleName() != null &&
+                role.getRoleName().length() > 0) {
+            roleRepository.save(role);
+        } else throw new IllegalStateException("The name of role can not be empty!");
+        return role;
     }
 
     public void deleteRole(Integer roleId) {
@@ -41,21 +44,20 @@ public class RoleService {
     }
 
     @Transactional
-    public void updateRole(Integer roleId,
-                            String roleName) {
-        RoleEntity role = roleRepository.findById(roleId)
+    public RoleEntity updateRole(Integer roleId,
+                            RoleEntity newRole) {
+        RoleEntity updateRole = roleRepository.findById(roleId)
                 .orElseThrow(() -> new IllegalStateException("person with ID " + roleId + " do not exists!"));
 
-        if ( roleName != null &&
-                roleName.length() > 0 &&
-                !Objects.equals(role.getRoleName(), role)) {
-            Optional <RoleEntity> roleEntityOptional = roleRepository.findRoleByRoleName(roleName);
+        if ( newRole.getRoleName() != null &&
+                newRole.getRoleName().length() > 0 &&
+                !Objects.equals(updateRole.getRoleName(), newRole.getRoleName())) {
+            Optional <RoleEntity> roleEntityOptional = roleRepository.findRoleByRoleName(newRole.getRoleName());
             if (roleEntityOptional.isPresent()) {
-                throw new IllegalStateException("This role is registered before !");
+                throw new IllegalStateException("This role is registered before!");
             }
-            role.setRoleName(roleName);
+            updateRole.setRoleName(newRole.getRoleName());
         }
-
-        System.out.println(role);
+    return updateRole;
     }
 }

@@ -23,14 +23,17 @@ public class RightService {
         return rightRepository.findAll();
     }
 
-    public void addNewRight(RightEntity rightName) {
-        System.out.println(rightName);
+    public RightEntity addNewRight(RightEntity right) {
 
-        Optional<RightEntity> rightOptional = rightRepository.findRightByRightName(rightName.getRightName());
-        if (rightOptional.isPresent()) {
-            throw new IllegalStateException("This Right is registered before !");
-        }
-        rightRepository.save(rightName);
+        if ( right.getRightName() != null &&
+                right.getRightName().length() > 0 ){
+                Optional<RightEntity> rightOptional = rightRepository.findRightByRightName(right.getRightName());
+                if (rightOptional.isPresent()) {
+                      throw new IllegalStateException("This Right is registered before!");
+                }
+            rightRepository.save(right);
+        } else throw new IllegalStateException("The name of right can not be empty!");
+        return right;
     }
 
     public void deleteRight(Integer rightId) {
@@ -41,21 +44,20 @@ public class RightService {
         rightRepository.deleteById(rightId);
     }
     @Transactional
-    public void updateRight(Integer rightId,
-                             String rightName) {
-        RightEntity right = rightRepository.findById(rightId)
+    public RightEntity updateRight(Integer rightId,
+                             RightEntity newRight) {
+        RightEntity updareRight = rightRepository.findById(rightId)
                 .orElseThrow(() -> new IllegalStateException("person with ID " + rightId + " do not exists!"));
 
-        if ( rightName != null &&
-                rightName.length() > 0 &&
-                !Objects.equals(right.getRightName(), rightName)) {
-            Optional <RightEntity> rightEntityOptional = rightRepository.findRightByRightName(rightName);
+        if ( newRight.getRightName() != null &&
+                newRight.getRightName().length() > 0 &&
+                !Objects.equals(updareRight.getRightName(), newRight.getRightName())) {
+            Optional <RightEntity> rightEntityOptional = rightRepository.findRightByRightName(newRight.getRightName());
             if (rightEntityOptional.isPresent()) {
-                throw new IllegalStateException("This right is registered before !");
+                throw new IllegalStateException("This right is registered before!");
             }
-            right.setRightName(rightName);
+            updareRight.setRightName(newRight.getRightName());
         }
-
-        System.out.println(right);
+        return updareRight;
     }
 }

@@ -1,11 +1,16 @@
 package com.example.tesy.people;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.transaction.Transactional;
+import java.net.URI;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -27,17 +32,21 @@ public class PeopleService {
     }
 
 
-    public void addNewPeople(PeopleEntity people) {
+    public PeopleEntity addNewPeople(PeopleEntity people) {
         System.out.println(people);
         String rowPasswd =people.getPasswd();
         people.setPasswd(passwordEncoder.encode(rowPasswd));
-
 
         Optional<PeopleEntity> peopleOptional = peopleRepository.findPeopleByUsername(people.getUsername());
         if (peopleOptional.isPresent()) {
             throw new IllegalStateException("This Username is registered before !");
         }
+        if ( rowPasswd != null &&
+                rowPasswd.length() > 0 )
+                {people.setPasswd(passwordEncoder.encode(rowPasswd));
+        } else throw new IllegalStateException("The password can not be empty!");
         peopleRepository.save(people);
+        return people;
     }
 
     public void deletePeople(Long peopleId) {
@@ -49,34 +58,35 @@ public class PeopleService {
     }
 
     @Transactional
-    public void updatePeople(Long peopleId,
-                             String username,
-                             String passwd,
-                             String realName) {
-        PeopleEntity people = peopleRepository.findById(peopleId)
+    public PeopleEntity updatePeople(Long peopleId, PeopleEntity newPeople){
+
+        PeopleEntity updatePeople = peopleRepository.findById(peopleId)
                 .orElseThrow(() -> new IllegalStateException("person with ID " + peopleId + " do not exists!"));
 
-        if ( username != null &&
-                username.length() > 0 &&
-                !Objects.equals(people.getUsername(), username)) {
-                Optional <PeopleEntity> peopleEntityOptional = peopleRepository.findPeopleByUsername(username);
+        if ( newPeople.getUsername() != null &&
+                newPeople.getUsername().length() > 0 &&
+                !Objects.equals(updatePeople.getUsername(), newPeople.getUsername())) {
+                Optional <PeopleEntity> peopleEntityOptional = peopleRepository.findPeopleByUsername(newPeople.getUsername());
             if (peopleEntityOptional.isPresent()) {
                 throw new IllegalStateException("This username is registered before !");
             }
-            people.setUsername(username);
+            updatePeople.setUsername(newPeople.getUsername());
         }
 
-        if ( passwd != null &&
-                passwd.length() > 0 &&
-                !Objects.equals(people.getPasswd(), passwd)) {
-            people.setPasswd(passwd);
+        if ( newPeople.getPasswd() != null &&
+                newPeople.getPasswd().length() > 0 &&
+                !Objects.equals(updatePeople.getPasswd(), newPeople.getPasswd())) {
+            updatePeople.setPasswd(passwordEncoder.encode(newPeople.getPasswd()));
         }
 
-        if ( realName != null &&
-                realName.length() > 0 &&
-                !Objects.equals(people.getRealName(), realName)) {
-            people.setRealName(realName);
+        if ( newPeople.getRealName() != null &&
+                newPeople.getRealName().length() > 0 &&
+                !Objects.equals(updatePeople.getRealName(), newPeople.getRealName())) {
+            updatePeople.setRealName(newPeople.getRealName());
         }
-        System.out.println(people);
+        peopleRepository.save(updatePeople);
+        return updatePeople;
+
     }
+
 }

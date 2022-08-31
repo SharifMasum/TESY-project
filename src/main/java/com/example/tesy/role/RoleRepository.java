@@ -1,4 +1,4 @@
-package com.example.tesy.inclasses.role;
+package com.example.tesy.role;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
