@@ -69,13 +69,13 @@ public class ObservationController {
     }
 
     //Update by animal Id, relational data reference to animal class
-    @PutMapping(path = "/{observationId}/animal/{animalID}")
+    @PutMapping(path = "/{observationId}/animal/{animalId}")
     ObservationEntity assignObservationToAnimal(
-            @PathVariable Long animalID,
+            @PathVariable Long animalId,
             @PathVariable Long observationId
     ) {
         ObservationEntity observation = observationRepository.findById(observationId).get();
-        AnimalEntity animal = animalRepository.findById(animalID).get();
+        AnimalEntity animal = animalRepository.findById(animalId).get();
         observation.assignAnimal(animal);
         return observationRepository.save(observation);
     }

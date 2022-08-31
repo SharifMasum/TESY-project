@@ -35,6 +35,7 @@ public class PeopleEntity {
 
     private String realName;
 
+    /*
     // Relation with Observation
     @JsonIgnore
     @OneToMany(mappedBy = "people")
@@ -42,7 +43,7 @@ public class PeopleEntity {
 
     public Set<ObservationEntity> getObservationEntity() {
         return observationEntity;
-    }
+    }*/
 
 
     @ManyToMany(cascade = CascadeType.ALL,

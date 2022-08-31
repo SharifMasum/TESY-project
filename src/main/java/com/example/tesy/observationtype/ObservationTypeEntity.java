@@ -25,6 +25,7 @@ public class ObservationTypeEntity {
 
     private String obsType_name;
 
+    // Relation
     @ManyToMany
     @JoinTable(
             name = "observation_made",

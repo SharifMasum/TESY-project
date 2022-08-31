@@ -1,6 +1,7 @@
 package com.example.tesy.observation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -11,6 +12,7 @@ import java.util.Optional;
 public class ObservationService {
 
     private final ObservationRepository observationRepository;
+
 
     @Autowired
     public ObservationService(ObservationRepository observationRepository) {
