@@ -1,5 +1,6 @@
 package com.example.tesy.status;
 
+import com.example.tesy.observation.ObservationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,15 +11,24 @@ import java.util.List;
 public class StatusController {
 
     private final StatusService statusService;
+    private final StatusRepository statusRepository;
 
     @Autowired
-    public StatusController(StatusService statusService) {
+    public StatusController(StatusService statusService, StatusRepository statusRepository) {
         this.statusService = statusService;
+        this.statusRepository = statusRepository;
     }
 
     @GetMapping
     public List<StatusEntity> getStatusEntitys() {
         return statusService.getStatusEntitys();
+    }
+
+    // Get by Id
+    @GetMapping(path = "{statusId}")
+    public StatusEntity findStatusById(@PathVariable (value =
+            "statusId") Long statusId) {
+        return this.statusRepository.findById(statusId).orElse(null);
     }
 
     @PostMapping

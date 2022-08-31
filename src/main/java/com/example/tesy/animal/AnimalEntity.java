@@ -150,6 +150,8 @@ public class AnimalEntity {
       //    @JoinColumn(name = "peopleId")
           private PeopleEntity people;
       */
+
+    /*
     // Relation with ObservationEntity
     @JsonIgnore
     @OneToMany(mappedBy = "animal")
@@ -157,7 +159,8 @@ public class AnimalEntity {
 
     public Set<ObservationEntity> getObservationEntity() {
         return observationEntity;
-    }
+    }*/
+
     @ManyToOne(
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER

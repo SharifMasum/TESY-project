@@ -25,6 +25,7 @@ public class ObservationTypeEntity {
 
     private String obsType_name;
 
+    // Relation
     @ManyToMany
     @JoinTable(
             name = "observation_made",
@@ -38,12 +39,12 @@ public class ObservationTypeEntity {
     }
 
     //Relation with observation
-    @ManyToMany(mappedBy = "speciesObservation")
+    /*@ManyToMany(mappedBy = "speciesObservation")
     private Set<ObservationEntity> typeIncluded = new HashSet<>();
 
     public Set<ObservationEntity> getTypeIncluded() {
         return typeIncluded;
-    }
+    }*/
 
     public ObservationTypeEntity(Long typeId, String obsType_name) {
         this.typeId = typeId;

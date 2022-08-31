@@ -10,15 +10,24 @@ import java.util.List;
 public class InclassesController {
 
     private final InclassesService inclassesService;
+    private final InclassesRepository inclassesRepository;
 
     @Autowired
-    public InclassesController(InclassesService inclassesService) {
+    public InclassesController(InclassesService inclassesService, InclassesRepository inclassesRepository) {
         this.inclassesService = inclassesService;
+        this.inclassesRepository = inclassesRepository;
     }
 
     @GetMapping
     public List<InclassesEntity> getInClassesEntitys() {
         return inclassesService.getInClassesEntitys();
+    }
+
+    // Get by Id
+    @GetMapping(path = "{inclassId}")
+    public InclassesEntity findInclassById(@PathVariable (value =
+            "inclassId") Long inclassId) {
+        return this.inclassesRepository.findById(inclassId).orElse(null);
     }
 
     @PostMapping

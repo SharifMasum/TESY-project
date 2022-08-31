@@ -1,5 +1,6 @@
 package com.example.tesy.species;
 
+import com.example.tesy.observation.ObservationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +11,12 @@ import java.util.List;
 public class SpeciesController {
 
     private final SpeciesService speciesService;
+    private final SpeciesRepository speciesRepository;
 
     @Autowired
-    public SpeciesController(SpeciesService speciesService) {
+    public SpeciesController(SpeciesService speciesService, SpeciesRepository speciesRepository) {
         this.speciesService = speciesService;
+        this.speciesRepository = speciesRepository;
     }
 
     @GetMapping
@@ -21,6 +24,12 @@ public class SpeciesController {
         return speciesService.getSpeciesEntitys();
     }
 
+    // Get by Id
+    @GetMapping(path = "{speciesId}")
+    public SpeciesEntity findSpeciesById(@PathVariable (value =
+            "speciesId") Long speciesId) {
+        return this.speciesRepository.findById(speciesId).orElse(null);
+    }
     @PostMapping
     public void registerNewSpeciesEntity(
             @RequestBody SpeciesEntity speciesEntity) {

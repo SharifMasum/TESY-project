@@ -64,4 +64,15 @@ public class SpeciesObsJoinEntity {
                 '}';
     }
 
+    public void assignSpecies(SpeciesEntity species) {
+        this.species = species;
+    }
+
+    public void assignObservation(ObservationEntity observation) {
+        addedObservation.add(observation);
+    }
+
+    public void assignSpeciesObsJoin(SpeciesObsJoinEntity speciesobsjoin) {
+        this.species = species;
+    }
 }
