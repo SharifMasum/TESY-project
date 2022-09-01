@@ -1,7 +1,8 @@
 package com.example.tesy.status;
 
-import com.example.tesy.observation.ObservationEntity;
+import com.example.tesy.species.SpeciesEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +21,8 @@ public class StatusController {
     }
 
     @GetMapping
-    public List<StatusEntity> getStatusEntitys() {
-        return statusService.getStatusEntitys();
+    public List<StatusEntity> getStatus() {
+        return statusService.getStatus();
     }
 
     // Get by Id
@@ -32,21 +33,21 @@ public class StatusController {
     }
 
     @PostMapping
-    public void registerNewStatusEntity(
+    public StatusEntity registerNewStatus(
             @RequestBody StatusEntity statusEntity) {
-        statusService.addNewStatusEntity(statusEntity);
+        return this.statusRepository.save(statusEntity);
     }
 
     @DeleteMapping(path = "{statusId}")
-    public void deleteStatusEntity(
+    public void deleteStatus(
             @PathVariable("statusId") Long statusId) {
-        statusService.deleteStatusEntity(statusId);
+        statusService.deleteStatus(statusId);
     }
 
     @PutMapping(path = "{statusId}")
-    public void updateStatusEntity(
+    public ResponseEntity<StatusEntity> updateStatus(
             @PathVariable("statusId") Long statusId,
-            @RequestParam(required = false) String name) {
-        statusService.updateStatusEntity(statusId, name);
+            @RequestBody StatusEntity newStatus) {
+        return ResponseEntity.ok().body(statusService.updateStatus(statusId, newStatus));
     }
 }

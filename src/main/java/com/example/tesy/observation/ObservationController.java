@@ -2,13 +2,11 @@ package com.example.tesy.observation;
 
 import com.example.tesy.animal.AnimalEntity;
 import com.example.tesy.animal.AnimalRepository;
-import com.example.tesy.observationtype.ObservationTypeEntity;
 import com.example.tesy.observationtype.ObservationTypeRepository;
 import com.example.tesy.people.PeopleEntity;
 import com.example.tesy.people.PeopleRepository;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.Path;
 import java.util.Date;
 import java.util.List;
 
@@ -35,8 +33,8 @@ public class ObservationController {
     }
 
     @PostMapping
-    public void registerNewObservation(@RequestBody ObservationEntity observation) {
-        observationService.addNewObservation(observation);
+    public ObservationEntity registerNewObservation(@RequestBody ObservationEntity observation) {
+        return this.observationRepository.save(observation);
     }
 
     // Get all

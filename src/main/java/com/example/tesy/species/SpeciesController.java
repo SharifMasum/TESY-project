@@ -1,7 +1,7 @@
 package com.example.tesy.species;
 
-import com.example.tesy.observation.ObservationEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class SpeciesController {
 
     @GetMapping
     public List<SpeciesEntity> getSpeciesEntitys() {
-        return speciesService.getSpeciesEntitys();
+        return speciesService.getSpecies();
     }
 
     // Get by Id
@@ -31,21 +31,21 @@ public class SpeciesController {
         return this.speciesRepository.findById(speciesId).orElse(null);
     }
     @PostMapping
-    public void registerNewSpeciesEntity(
+    public SpeciesEntity registerNewSpecies(
             @RequestBody SpeciesEntity speciesEntity) {
-        speciesService.addNewSpeciesEntity(speciesEntity);
+        return this.speciesRepository.save(speciesEntity);
     }
 
-    @DeleteMapping(path = "{speciesId}")
-    public void deleteSpeciesEntity(
+    @DeleteMapping(path = "/{speciesId}")
+    public void deleteSpecies(
             @PathVariable("speciesId") Long speciesId) {
-        speciesService.deleteSpeciesEntity(speciesId);
+        speciesService.deleteSpecies(speciesId);
     }
 
-    @PutMapping(path = "{speciesId}")
-    public void updateSpeciesEntity(
+    @PutMapping(path = "/{speciesId}")
+    public ResponseEntity<SpeciesEntity> updateSpecies(
             @PathVariable("speciesId") Long speciesId,
-            @RequestParam(required = false) String name) {
-        speciesService.updateSpeciesEntity(speciesId, name);
+            @RequestBody SpeciesEntity newSpecies) {
+        return ResponseEntity.ok().body(speciesService.updateSpecies(speciesId, newSpecies));
     }
 }

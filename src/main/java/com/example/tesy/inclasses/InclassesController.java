@@ -1,6 +1,7 @@
 package com.example.tesy.inclasses;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,33 +20,34 @@ public class InclassesController {
     }
 
     @GetMapping
-    public List<InclassesEntity> getInClassesEntitys() {
-        return inclassesService.getInClassesEntitys();
+    public List<InclassesEntity> getInClassesEntity() {
+        return inclassesService.getInClassesEntity();
     }
 
     // Get by Id
-    @GetMapping(path = "{inclassId}")
+    @GetMapping(path = "/{inclassId}")
     public InclassesEntity findInclassById(@PathVariable (value =
             "inclassId") Long inclassId) {
         return this.inclassesRepository.findById(inclassId).orElse(null);
     }
 
     @PostMapping
-    public void registerNewInClassesEntity(
+    public ResponseEntity registerNewInClassesEntity(
             @RequestBody InclassesEntity inclassesEntity) {
         inclassesService.addNewInClassesEntity(inclassesEntity);
+        return ResponseEntity.ok().body(inclassesEntity);
     }
 
-    @DeleteMapping(path = "{inclassId}")
+    @DeleteMapping(path = "/{inclassId}")
     public void deleteInClassesEntity(
             @PathVariable("inclassId") Long inclassId) {
         inclassesService.deleteInClassesEntity(inclassId);
     }
 
-    @PutMapping(path = "{inclassId}")
-    public void updateInclassesEntity(
+    @PutMapping(path = "/{inclassId}")
+    public ResponseEntity updateInclassesEntity(
             @PathVariable("inclassId") Long inclassId,
-            @RequestParam(required = false) String name) {
-        inclassesService.updateInClassesEntity(inclassId, name);
+            @RequestBody InclassesEntity newClass) {
+        return ResponseEntity.ok().body(inclassesService.updateInClassesEntity(inclassId, newClass));
     }
 }

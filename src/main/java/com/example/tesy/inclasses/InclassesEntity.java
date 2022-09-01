@@ -17,15 +17,16 @@ public class InclassesEntity {
     )
 
     private Long inclassId;
-    private String name;
 
-    public InclassesEntity(Long inclassId, String name) {
+    private String className;
+
+    public InclassesEntity(Long inclassId, String className) {
         this.inclassId = inclassId;
-        this.name = name;
+        this.className = className;
     }
 
-    public InclassesEntity(String name) {
-        this.name = name;
+    public InclassesEntity(String className) {
+        this.className = className;
     }
 
     public InclassesEntity() {
@@ -40,19 +41,19 @@ public class InclassesEntity {
         this.inclassId = inclassId;
     }
 
-    public String getName() {
-        return name;
+    public String getClassName() {
+        return className;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
     @Override
     public String toString() {
         return "InclassesEntity{" +
                 "inclassId=" + inclassId +
-                ", name='" + name + '\'' +
+                ", name='" + className + '\'' +
                 '}';
     }
 }
