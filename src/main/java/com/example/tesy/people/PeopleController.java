@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/people")
@@ -78,6 +80,20 @@ public class PeopleController {
 
         people.delAssignedRole(role);
         return peopleRepository.save(people);
+    }
+
+    @PutMapping(path = "/{peopleId}/role")
+    public void assignRolesToPeople(@PathVariable("peopleId") Long peopleId,
+                                    @RequestBody Map<String, Object>[] rolesRaw) throws ParseException {
+        PeopleEntity people = peopleRepository.getReferenceById(peopleId);
+        people.clearAssignedRoles();
+        for (Map<String, Object> roleRaw: rolesRaw){
+            String stringToConvert = String.valueOf(roleRaw.get("roleId"));
+            Integer roleId = Integer.parseInt(stringToConvert);
+            RoleEntity role = roleRepository.findRoleByRoleId(roleId);
+            people.setAssignedRole(role);
+        }
+        peopleRepository.save(people);
     }
 
 }

@@ -1,13 +1,16 @@
 package com.example.tesy.role;
 
 
+import com.example.tesy.people.PeopleEntity;
 import com.example.tesy.right.RightEntity;
 import com.example.tesy.right.RightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "api/role")
@@ -80,5 +83,20 @@ public class RoleController {
         role.delAssignedRight(right);
         return roleRepository.save(role);
     }
+
+    @PutMapping(path = "/{roleId}/right")
+    public void assignRightToRole(@PathVariable("roleId") Integer roleId,
+                                    @RequestBody Map<String, Object>[] rightsRaw) throws ParseException {
+        RoleEntity role = roleRepository.getReferenceById(roleId);
+        role.clearAssignedRights();
+        for (Map<String, Object> rightRaw: rightsRaw){
+            String stringToConvert = String.valueOf(rightRaw.get("rightId"));
+            Integer rightId = Integer.parseInt(stringToConvert);
+            RightEntity right = rightRepository.findRightByRightId(rightId);
+            role.setAssignedRight(right);
+        }
+        roleRepository.save(role);
+    }
+
 
 }

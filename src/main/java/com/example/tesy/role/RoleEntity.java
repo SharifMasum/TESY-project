@@ -71,6 +71,8 @@ public class RoleEntity {
     public void delAssignedRight(RightEntity right) {
         assignedRight.remove(right);
     }
+    public void clearAssignedRights() {assignedRight.clear();
+    }
 
     @Override
     public String toString() {
@@ -80,4 +82,6 @@ public class RoleEntity {
                 ", assignedRight=" + assignedRight +
                 '}';
     }
+
+
 }

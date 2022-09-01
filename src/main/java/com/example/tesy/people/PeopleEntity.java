@@ -114,6 +114,7 @@ public class PeopleEntity {
     public void delAssignedRole(RoleEntity role) {
         assignedRole.remove(role);
     }
+    public void clearAssignedRoles() {assignedRole.clear();}
 
     @Override
     public String toString() {
@@ -125,5 +126,4 @@ public class PeopleEntity {
                 ", assignedRole=" + assignedRole +
                 '}';
     }
-
 }
