@@ -1,9 +1,9 @@
 package com.example.tesy.observationtype;
 
-import com.example.tesy.observation.ObservationEntity;
 import com.example.tesy.speciesobsjoin.SpeciesObsJoinEntity;
 import com.example.tesy.speciesobsjoin.SpeciesObsJoinRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,49 +26,47 @@ public class ObservationTypeController {
 
     // Get the list
     @GetMapping
-    public List<ObservationEntity> getObservationTypeEntitys() {
-        return observationTypeService.getObservationTypeEntitys();
+    public List<ObservationTypeEntity> getObservationType() {
+        return observationTypeService.getObservationType();
     }
 
     // Get by Id
     @GetMapping(path = "{typeId}")
-    public ObservationEntity findObservationTypeById(@PathVariable (value =
+    public ObservationTypeEntity findObservationTypeById(@PathVariable (value =
             "typeId") Long typeId) {
         return this.observationTypeRepository.findById(typeId).orElse(null);
     }
 
     @PostMapping
-    public void registerNewObservationTypeEntity(
-            @RequestBody ObservationTypeEntity observationTypeEntity) {
-        observationTypeService.addNewObservationTypeEntity(observationTypeEntity);
+    public ObservationTypeEntity registerNewObservationTypeEntity(
+            @RequestBody ObservationTypeEntity observationType) {
+        return observationTypeRepository.save(observationType);
     }
 
     @DeleteMapping(path = "{typeId}")
-    public void deleteObservationTypeEntity(
+    public void deleteObservationType(
             @PathVariable("typeId") Long typeId) {
-        observationTypeService.deleteObservationTypeEntity(typeId);
+        observationTypeService.deleteObservationType(typeId);
     }
 
     //Update by Id
     @PutMapping(path = "{typeId}")
-    public void updateObservationTypeEntity(
+    public ResponseEntity<ObservationTypeEntity> updateObservationType(
             @PathVariable("typeId") Long typeId,
-            @RequestParam(required = false) String obsType_name
-    ) {
-        observationTypeService.updateObservationTypeEntity(typeId,obsType_name);
+            @RequestBody ObservationTypeEntity newObservationType) {
+        return ResponseEntity.ok().body(observationTypeService.updateObservationType(typeId, newObservationType));
     }
 
 
     //Update by speciesObsJoin Id
-    //Not working as I expected
 
     @PutMapping(path = "/{typeId}/speciesobsjoin/{speciesObsJoinId}")
-    ObservationEntity assignSpeciesObsJoinToObservationType(
+    ObservationTypeEntity assignSpeciesObsJoinToObservationType(
             @PathVariable Long typeId,
             @PathVariable Long speciesObsJoinId
     ) {
-        ObservationEntity type = observationTypeRepository.findById(typeId).get();
-        SpeciesObsJoinEntity speciesobsjoin = speciesObsJoinRepository.findById(speciesObsJoinId).get();
+        ObservationTypeEntity type = observationTypeRepository.getReferenceById(typeId);
+        SpeciesObsJoinEntity speciesobsjoin = speciesObsJoinRepository.findSpeciesObsJoinBySpeciesObsJoinId(speciesObsJoinId);
         speciesobsjoin.assignSpeciesObsJoin(speciesobsjoin);
         return observationTypeRepository.save(type);
     }

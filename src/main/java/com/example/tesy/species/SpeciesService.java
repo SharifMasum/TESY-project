@@ -31,9 +31,9 @@ public class SpeciesService {
     public void deleteSpecies(Long speciesId) {
         boolean exists = speciesRepository.existsById(speciesId);
         if (!exists) {
-            throw new IllegalStateException("This species with Id " + speciesId + " do not exists!");
+            throw new IllegalStateException("This status with Id " + speciesId + " do not exists!");
         }
-            speciesRepository.deleteById(speciesId);
+        speciesRepository.deleteById(speciesId);
     }
 
     @Transactional

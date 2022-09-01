@@ -23,7 +23,7 @@ public class ObservationTypeEntity {
 
     private Long typeId;
 
-    private String obsType_name;
+    private String obsTypeName;
 
     // Relation
     @ManyToMany
@@ -32,10 +32,10 @@ public class ObservationTypeEntity {
             joinColumns = @JoinColumn(name = "typeId"),
             inverseJoinColumns = @JoinColumn(name = "speciesObsJoinId")
     )
-    private Set<SpeciesObsJoinEntity> observationIncluded = new HashSet<>();
+    private Set<SpeciesObsJoinEntity> speciesObsJoinIncluded = new HashSet<>();
 
-    public Set<SpeciesObsJoinEntity> getObservationIncluded() {
-        return observationIncluded;
+    public Set<SpeciesObsJoinEntity> getSpeciesObsJoinIncluded() {
+        return speciesObsJoinIncluded;
     }
 
     //Relation with observation
@@ -46,9 +46,18 @@ public class ObservationTypeEntity {
         return typeIncluded;
     }*/
 
-    public ObservationTypeEntity(Long typeId, String obsType_name) {
+    public ObservationTypeEntity(Long typeId,
+                                 String obsTypeName,
+                                 Set<SpeciesObsJoinEntity> speciesObsJoinIncluded) {
         this.typeId = typeId;
-        this.obsType_name= obsType_name;
+        this.obsTypeName= obsTypeName;
+        this.speciesObsJoinIncluded= speciesObsJoinIncluded;
+    }
+
+    public ObservationTypeEntity(String obsTypeName,
+                                 Set<SpeciesObsJoinEntity> speciesObsJoinIncluded) {
+        this.obsTypeName = obsTypeName;
+        this.speciesObsJoinIncluded= speciesObsJoinIncluded;
     }
 
     public ObservationTypeEntity() {
@@ -59,23 +68,23 @@ public class ObservationTypeEntity {
         return typeId;
     }
 
-    public String getObsType_name() {
-        return obsType_name;
+    public String getObsTypeName() {
+        return obsTypeName;
     }
 
     public void setTypeId(Long typeId) {
         this.typeId = typeId;
     }
 
-    public void setObsType_name(String obsType_name) {
-        this.obsType_name = obsType_name;
+    public void setObsTypeName(String obsTypeName) {
+        this.obsTypeName = obsTypeName;
     }
 
     @Override
     public String toString() {
         return "ObservationTypeEntity{" +
                 "typeId=" + typeId +
-                ", obsType_name=" + obsType_name +
+                ", obsType_name=" + obsTypeName +
                 '}';
     }
 }

@@ -2,12 +2,13 @@ package com.example.tesy.observation;
 
 import com.example.tesy.animal.AnimalEntity;
 import com.example.tesy.animal.AnimalRepository;
+import com.example.tesy.observationtype.ObservationTypeEntity;
 import com.example.tesy.observationtype.ObservationTypeRepository;
 import com.example.tesy.people.PeopleEntity;
 import com.example.tesy.people.PeopleRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -58,29 +59,27 @@ public class ObservationController {
 
     //Update by observation Id
     @PutMapping(path = "/{observationId}")
-    public void updateObservation(
-            @PathVariable Long observationId,
-            @RequestParam(required = true)Date date,
-            @RequestParam(required = false) String value)
-             {
-        observationService.updateObservation(observationId, date, value);
+    public ResponseEntity updateObservation(
+            @PathVariable("observationId") Long observationId,
+            @RequestBody ObservationEntity newObservation) {
+        return ResponseEntity.ok().body(observationService.updateObservation(observationId, newObservation));
     }
 
     //Update by animal Id, relational data reference to animal class
     @PutMapping(path = "/{observationId}/animal/{animalId}")
-    ObservationEntity assignObservationToAnimal(
-            @PathVariable Long animalId,
-            @PathVariable Long observationId
+    AnimalEntity assignObservationToAnimal(
+            @PathVariable Long observationId,
+            @PathVariable Long animalId
     ) {
-        ObservationEntity observation = observationRepository.findById(observationId).get();
-        AnimalEntity animal = animalRepository.findById(animalId).get();
-        observation.assignAnimal(animal);
-        return observationRepository.save(observation);
+        ObservationEntity observation = observationRepository.getReferenceById(observationId);
+        AnimalEntity animal= animalRepository.findAnimalByAnimalId(animalId);
+        observation.AssignAnimal(animal);
+        return  animalRepository.save(animal);
     }
 
     // Update by people Id, relational data reference to people class
     @PutMapping(path = "/{observationId}/people/{peopleId}")
-    ObservationEntity assignObservationToPeople(
+    ObservationEntity assignPeopleToObservation(
             @PathVariable Long peopleId,
             @PathVariable Long observationId
     ) {
@@ -93,16 +92,15 @@ public class ObservationController {
     /*
     //Update by observation type id, relational data, reference of observation type class
     //Does not work. "getOne()" is depreciated. Needs to find proper alternative.
-    //ObservationTypeEntity is not legal here. But should be. Need to find alternate method.
 
-    @PutMapping(path = "/{observationId}/type/{typeId}")
-    ObservationEntity assignObservationToObservationType(
+    @PutMapping(path = "/{observationId}/observationtype/{typeId}")
+    ObservationEntity assignObservationTypeToObservation(
             @PathVariable Long typeId,
             @PathVariable Long observationId
     ) {
         ObservationEntity observation = observationRepository.getOne(observationId);
         ObservationTypeEntity type = observationTypeRepository.getOne(typeId);
-        observation.assignType(type);
+        observation.AssignType(type);
         return observationRepository.save(observation);
     }*/
 }

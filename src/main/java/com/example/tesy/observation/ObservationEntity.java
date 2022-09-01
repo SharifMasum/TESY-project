@@ -3,7 +3,6 @@ package com.example.tesy.observation;
 import com.example.tesy.animal.AnimalEntity;
 import com.example.tesy.observationtype.ObservationTypeEntity;
 import com.example.tesy.people.PeopleEntity;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -115,7 +114,7 @@ public class ObservationEntity {
         this.animal = animal;
     }
 
-    public Set<ObservationTypeEntity> getSpeciesObservation() {
+    public Set<ObservationTypeEntity> getObservationIncluded() {
         return observationIncluded;
     }
 
@@ -150,5 +149,13 @@ public class ObservationEntity {
     public void assignPeople(PeopleEntity people) {
         this.people = people;
     }
+
+    public void AssignAnimal(AnimalEntity animal) {
+        this.animal= animal;
+    }
+
+    public void AssignType(ObservationTypeEntity type) {
+    }
+
 }
 

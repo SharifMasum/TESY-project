@@ -57,7 +57,7 @@ public class InclassesService {
     public void deleteInClassesEntity(Long inclassId) {
         boolean exists = inclassesRepository.existsById(inclassId);
         if (!exists) {
-            throw new IllegalStateException("This class with ID" + inclassId + "do not exists!");
+            throw new IllegalStateException("This class with Id " + inclassId + " do not exists!");
         }
         inclassesRepository.deleteById(inclassId);
     }

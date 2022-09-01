@@ -36,11 +36,12 @@ public class SpeciesController {
         return this.speciesRepository.save(speciesEntity);
     }
 
-    @DeleteMapping(path = "/{speciesId}")
+    @DeleteMapping(path = "{speciesId}")
     public void deleteSpecies(
             @PathVariable("speciesId") Long speciesId) {
         speciesService.deleteSpecies(speciesId);
     }
+
 
     @PutMapping(path = "/{speciesId}")
     public ResponseEntity<SpeciesEntity> updateSpecies(

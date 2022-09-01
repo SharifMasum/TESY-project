@@ -5,6 +5,7 @@ import com.example.tesy.observation.ObservationRepository;
 import com.example.tesy.species.SpeciesEntity;
 import com.example.tesy.species.SpeciesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,10 +26,15 @@ public class SpeciesObsJoinController {
         this.speciesRepository = speciesRepository;
         this.observationRepository = observationRepository;
     }
+    @PostMapping
+    public SpeciesObsJoinEntity registerNewSpeciesObsJoin(
+            @RequestBody SpeciesObsJoinEntity speciesObsJoin) {
+        return speciesObsJoinRepository.save(speciesObsJoin);
+    }
 
     @GetMapping
-    public List<SpeciesObsJoinEntity> getSpeciesObsJoinEntitys() {
-        return speciesObsJoinService.getSpeciesObsJoinEntitys();
+    public List<SpeciesObsJoinEntity> getSpeciesObsJoin() {
+        return speciesObsJoinService.getSpeciesObsJoin();
     }
 
     // Get by Id
@@ -38,24 +44,19 @@ public class SpeciesObsJoinController {
         return this.speciesObsJoinRepository.findById(speciesObsJoinId).orElse(null);
     }
 
-    @PostMapping
-    public void registerNewSpeciesObsJoinEntity(
-            @RequestBody SpeciesObsJoinEntity speciesObsJoinEntity) {
-        speciesObsJoinService.addNewSpeciesObsJoinEntity(speciesObsJoinEntity);
-    }
-
     @DeleteMapping(path = "{speciesObsJoinId}")
-    public void deleteNewSpeciesObsJoinEntity(
+    public void deleteNewSpeciesObsJoin(
             @PathVariable("speciesObsJoinId") Long speciesObsJoinId) {
-        speciesObsJoinService.deleteSpeciesObsJoinEntity(speciesObsJoinId);
+        speciesObsJoinService.deleteSpeciesObsJoin(speciesObsJoinId);
     }
 
     @PutMapping(path = "{speciesObsJoinId}")
-    public void updateSpeciesObsJoinEntity(
-            @PathVariable("speciesObsJoinId") Long speciesObsJoinId
-    ) {
-        speciesObsJoinService.updateSpeciesObsJoinEntity(speciesObsJoinId);
+    public ResponseEntity<SpeciesObsJoinEntity> updateSpeciesObsJoin(
+            @PathVariable("speciesObsJoinId") Long speciesObsJoinId,
+            @RequestBody SpeciesObsJoinEntity newSpeciesObsJoin) {
+        return ResponseEntity.ok().body(speciesObsJoinService.updateSpeciesObsJoin(speciesObsJoinId, newSpeciesObsJoin));
     }
+
 
     //Update by species Id
     @PutMapping(path = "/{speciesObsJoinId}/species/{speciesId}")
