@@ -61,22 +61,6 @@ public class AnimalEntity {
 
 
     private String ageClass;
-    /*public <Pregnant, Adult, Young, Dam> void ageClass
-    (Pregnant pregnant, Adult adult, Young young, Dam dam)*/
-
-
-
-
-    // FamilyMember fmm,FamilyMember fmf,FamilyMember fms,int mId){
-    //  this.ageClass= List<pregnant, adult, young, dam>
-
-    //            this.gender = gen;
-    //            this.address = add;
-    //            this.mother = fmm;
-    //            this.father = fmf;
-    //            this.spouse = fms;
-    //            this.memberID = mId;
-    //        }
 
     //age_class String At this point we're hardcoding this one: pregnant, adult, young, dam. In Finnish: tiine, aikuinen, pentu, emo
     // Age of the animal. Can be either number or text
@@ -113,45 +97,8 @@ public class AnimalEntity {
 
     }
 
-//    public void addItem(TreatmentEntity item) {
-//
-//        this.treatmentsList.add(item);
-//
-//        item.setAnimal(this);
-
-//    }
-
-//    @OneToMany(mappedBy = "AnimalEntity",
-//            cascade = CascadeType.ALL,
-//            orphanRemoval = true)
-//    private List<ObservationEntity> observationsList = new ArrayList<>();
-//    public void addItem(ObservationEntity item) {
-//
-//        this.observationsList.add(item);
-
-//        item.setAnimal(this);
-//
-//    }
 
 
-
-    /*  @ManyToOne(
-                  cascade = CascadeType.ALL,
-                  fetch = FetchType.EAGER
-          )
-      //    @JoinColumn(name = "peopleId")
-          private PeopleEntity people;
-      */
-
-    /*
-    // Relation with ObservationEntity
-    @JsonIgnore
-    @OneToMany(mappedBy = "animal")
-    private Set<ObservationEntity> observationEntity = new HashSet<>();
-
-    public Set<ObservationEntity> getObservationEntity() {
-        return observationEntity;
-    }*/
 
     @ManyToOne(
             cascade = CascadeType.ALL,
@@ -406,30 +353,7 @@ public class AnimalEntity {
     }
 
 
-//    public List<TreatmentEntity> getTreatmentsList() {
-//        return treatmentsList;
-//    }
-//
-//    public void setTreatmentsList(List<TreatmentEntity> treatmentsList) {
-//        this.treatmentsList = treatmentsList;
-//    }
 
-//    public List<ObservationEntity> getObservationsList() {
-//        return observationsList;
-//    }
-//
-//    public void setObservationsList(List<ObservationEntity> observationsList) {
-//        this.observationsList = observationsList;
-//    }
-
-   /* public PeopleEntity getPeople() {
-        return people;
-    }
-*/
-   /* public void setPeople(PeopleEntity people) {
-        this.people = people;
-    }
-    */
 
 
     @Override
