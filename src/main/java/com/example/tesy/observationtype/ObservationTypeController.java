@@ -57,7 +57,6 @@ public class ObservationTypeController {
         return ResponseEntity.ok().body(observationTypeService.updateObservationType(typeId, newObservationType));
     }
 
-
     //Update by speciesObsJoin Id
 
     @PutMapping(path = "/{typeId}/speciesobsjoin/{speciesObsJoinId}")
@@ -65,10 +64,9 @@ public class ObservationTypeController {
             @PathVariable Long typeId,
             @PathVariable Long speciesObsJoinId
     ) {
-        ObservationTypeEntity type = observationTypeRepository.getReferenceById(typeId);
-        SpeciesObsJoinEntity speciesobsjoin = speciesObsJoinRepository.findSpeciesObsJoinBySpeciesObsJoinId(speciesObsJoinId);
-        speciesobsjoin.assignSpeciesObsJoin(speciesobsjoin);
-        return observationTypeRepository.save(type);
+        ObservationTypeEntity observationType = observationTypeRepository.findById(typeId).get();
+        SpeciesObsJoinEntity speciesObsJoin = speciesObsJoinRepository.findById(speciesObsJoinId).get();
+        observationType.assignSpeciesObsJoin(speciesObsJoin);
+        return observationTypeRepository.save(observationType);
     }
-
 }

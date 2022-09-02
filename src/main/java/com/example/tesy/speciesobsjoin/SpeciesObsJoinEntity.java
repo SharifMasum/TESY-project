@@ -103,7 +103,7 @@ public class SpeciesObsJoinEntity {
         this.species = species;
     }
 
-    public void AssignObservation(ObservationEntity observation) {
+    public void assignObservation(ObservationEntity observation) {
         this.observation = observation;
     }
 

@@ -78,7 +78,7 @@ public class SpeciesObsJoinController {
     ) {
         SpeciesObsJoinEntity speciesobsjoin  = speciesObsJoinRepository.findById(speciesObsJoinId).get();
         ObservationEntity observation = observationRepository.findById(observationId).get();
-        speciesobsjoin.AssignObservation(observation);
+        speciesobsjoin.assignObservation(observation);
         return speciesObsJoinRepository.save(speciesobsjoin);
     }
 }

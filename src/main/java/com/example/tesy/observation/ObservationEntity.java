@@ -39,6 +39,7 @@ public class ObservationEntity {
     @JoinColumn(name = "animalId")
     private AnimalEntity animal;
 
+
     // Relation with observation type
     @ManyToMany
     @JoinTable(
@@ -47,6 +48,17 @@ public class ObservationEntity {
             inverseJoinColumns = @JoinColumn(name = "typeId")
     )
     private Set<ObservationTypeEntity> observationIncluded =new HashSet<>();
+
+
+    /*/ Relation with observation type
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
+    @JoinColumn(name = "typeId")
+    private ObservationTypeEntity observationType;
+    */
+
 
     // Relation with people
     @ManyToOne(
@@ -120,6 +132,17 @@ public class ObservationEntity {
         this.animal = animal;
     }
 
+    /*
+    public ObservationTypeEntity getObservationType() {
+        return observationType;
+    }
+
+    public void setObservationType(ObservationTypeEntity observationType) {
+        this.observationType = observationType;
+    }
+    */
+
+
     public Set<ObservationTypeEntity> getObservationIncluded() {
         return observationIncluded;
     }
@@ -136,6 +159,18 @@ public class ObservationEntity {
         this.people = people;
     }
 
+    public void assignAnimal(AnimalEntity animal) {
+        this.animal = animal;
+    }
+
+    public void assignPeople(PeopleEntity people) {
+        this.people = people;
+    }
+
+    /*public void assignType(ObservationTypeEntity observationType) { this.observationType = observationType;
+    }*/
+
+
     @Override
     public String toString() {
         return "ObservationEntity{" +
@@ -148,20 +183,7 @@ public class ObservationEntity {
                 '}';
     }
 
-    public void assignAnimal(AnimalEntity animal) {
-        this.animal = animal;
+    public void assignObservationType(ObservationTypeEntity observationType) { observationIncluded.add(observationType);
     }
-
-    public void assignPeople(PeopleEntity people) {
-        this.people = people;
-    }
-
-    public void AssignAnimal(AnimalEntity animal) {
-        this.animal= animal;
-    }
-
-    public void AssignType(ObservationTypeEntity type) {
-    }
-
 }
 

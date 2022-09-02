@@ -87,4 +87,7 @@ public class ObservationTypeEntity {
                 ", obsType_name=" + obsTypeName +
                 '}';
     }
+
+    public void assignSpeciesObsJoin(SpeciesObsJoinEntity speciesObsJoin) { speciesObsJoinIncluded.add(speciesObsJoin);
+    }
 }

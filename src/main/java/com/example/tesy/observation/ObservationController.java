@@ -73,7 +73,7 @@ public class ObservationController {
     ) {
         ObservationEntity observation = observationRepository.getReferenceById(observationId);
         AnimalEntity animal= animalRepository.findAnimalByAnimalId(animalId);
-        observation.AssignAnimal(animal);
+        observation.assignAnimal(animal);
         return  animalRepository.save(animal);
     }
 
@@ -89,18 +89,14 @@ public class ObservationController {
         return observationRepository.save(observation);
     }
 
-    /*
-    //Update by observation type id, relational data, reference of observation type class
-    //Does not work. "getOne()" is depreciated. Needs to find proper alternative.
-
     @PutMapping(path = "/{observationId}/observationtype/{typeId}")
     ObservationEntity assignObservationTypeToObservation(
-            @PathVariable Long typeId,
-            @PathVariable Long observationId
+            @PathVariable Long observationId,
+            @PathVariable Long typeId
     ) {
-        ObservationEntity observation = observationRepository.getOne(observationId);
-        ObservationTypeEntity type = observationTypeRepository.getOne(typeId);
-        observation.AssignType(type);
+        ObservationEntity observation = observationRepository.findById(observationId).get();
+        ObservationTypeEntity observationType = observationTypeRepository.findById(typeId).get();
+        observation.assignObservationType(observationType);
         return observationRepository.save(observation);
-    }*/
+    }
 }
