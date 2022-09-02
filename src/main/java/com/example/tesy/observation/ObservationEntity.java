@@ -32,7 +32,10 @@ public class ObservationEntity {
     private String value;
 
     //Relation with animal
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(
+            cascade = {CascadeType.ALL},
+            fetch = FetchType.EAGER
+    )
     @JoinColumn(name = "animalId")
     private AnimalEntity animal;
 
@@ -46,7 +49,10 @@ public class ObservationEntity {
     private Set<ObservationTypeEntity> observationIncluded =new HashSet<>();
 
     // Relation with people
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
+    )
     @JoinColumn(name = "peopleId")
     private PeopleEntity people;
 

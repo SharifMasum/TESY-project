@@ -23,17 +23,6 @@ public class ObservationService {
         this.observationRepository = observationRepository;
     }
 
-    public void addNewObservation(ObservationEntity observation) {
-        /*System.out.println(observation);
-
-        Optional<ObservationEntity> observationOptional =
-                observationRepository.findObservationById(observation.getObservationId());
-        if (observationOptional.isPresent()) {
-            throw new IllegalStateException("This observation id already exists! Try new one.");
-        }
-        observationRepository.save(observation);*/
-    }
-
     public List<ObservationEntity> getObservations() {
         return observationRepository.findAll();
     }

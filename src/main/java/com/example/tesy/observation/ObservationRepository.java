@@ -8,4 +8,5 @@ import java.util.Optional;
 @Repository
 public interface ObservationRepository extends JpaRepository<ObservationEntity,Long> {
     //Optional<ObservationEntity> findObservationById(Long observationId);
+    //Optional<ObservationEntity> findObservationById(Long observationId);
 }
