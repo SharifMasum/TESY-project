@@ -2,7 +2,7 @@ package com.example.tesy.animal;
 
 import com.example.tesy.observation.ObservationEntity;
 //import com.example.tesy.people.PeopleEntity;
-//import com.example.tesy.species.SpeciesEntity;
+import com.example.tesy.species.SpeciesEntity;
 import com.example.tesy.status.StatusEntity;
 import com.example.tesy.inclasses.InclassesEntity;
 import com.example.tesy.treatment.TreatmentEntity;
@@ -103,12 +103,9 @@ public class AnimalEntity {
     @CreatedDate
     private Date createDate;
 
-    /* 
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "speciesID")
     private SpeciesEntity species;
-    */
-    private String species;
 
 //    private List<TreatmentEntity> treatmentsList = new ArrayList<TreatmentEntity>();
 
@@ -188,7 +185,7 @@ public class AnimalEntity {
                   String seyStatistics,
                    String extraNotes,
                     Date createDate,
-                     /*SpeciesEntity*/ String species,
+                     SpeciesEntity species,
                       List<TreatmentEntity> treatmentsList,
                        List<ObservationEntity> observationsList
             /*, PeopleEntity people*/,
@@ -219,7 +216,7 @@ public class AnimalEntity {
         this.inclass = inclass;
     }
 
-    public AnimalEntity(String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, /*SpeciesEntity*/ String species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList
+    public AnimalEntity(String tesyId, Date inDate, Date inTesyDate, Date outTesyDate, String fromWhere, String population, String reason, String callingNameOfTheAnimal, String microchipNumber, Number animalAge, String animalColor, String breedAnimal, String euthanizedReasons, String seyStatistics, String extraNotes, Date createDate, SpeciesEntity species, List<TreatmentEntity> treatmentsList, List<ObservationEntity> observationsList
             /*, PeopleEntity people*/, StatusEntity status, InclassesEntity inclass) {
         this.tesyId = tesyId;
         this.inDate = inDate;
@@ -392,11 +389,11 @@ public class AnimalEntity {
         this.status = status;
     }
 
-    public /*SpeciesEntity*/ String getSpecies() {
+    public SpeciesEntity getSpecies() {
         return species;
     }
 
-    public void setSpecies(/*SpeciesEntity*/ String species) {
+    public void setSpecies(SpeciesEntity species) {
         this.species = species;
     }
 
