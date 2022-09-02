@@ -30,8 +30,7 @@ public class ObservationService {
     public void deleteObservation(Long observationId) {
         boolean exists = observationRepository.existsById(observationId);
         if (!exists) {
-            throw new IllegalStateException("This observation with Id " +
-                    ""+ observationId +" do not exist!");
+            throw new IllegalStateException("This observation with Id " + observationId + " do not exist!");
         }
         observationRepository.deleteById(observationId);
     }

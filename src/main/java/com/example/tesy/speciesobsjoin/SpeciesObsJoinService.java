@@ -22,7 +22,7 @@ public class SpeciesObsJoinService {
         return speciesObsJoinRepository.findAll();
     }
 
-    public void addNewSpeciesObsJoin(SpeciesObsJoinEntity speciesObsJoin) {
+    public void registerNewSpeciesObsJoin(SpeciesObsJoinEntity speciesObsJoin) {
     }
 
     public void deleteSpeciesObsJoin(Long speciesObsJoinId) {

@@ -72,13 +72,13 @@ public class SpeciesObsJoinController {
 
     //Update by observation Id
     @PutMapping(path = "/{speciesObsJoinId}/observation/{observationId}")
-    SpeciesObsJoinEntity assignObservationTypeToSpeciesObsJoin(
+    SpeciesObsJoinEntity assignObservationToSpeciesObsJoin(
             @PathVariable Long observationId,
             @PathVariable Long speciesObsJoinId
     ) {
         SpeciesObsJoinEntity speciesobsjoin  = speciesObsJoinRepository.findById(speciesObsJoinId).get();
         ObservationEntity observation = observationRepository.findById(observationId).get();
-        speciesobsjoin.assignObservation(observation);
+        speciesobsjoin.AssignObservation(observation);
         return speciesObsJoinRepository.save(speciesobsjoin);
     }
 }
