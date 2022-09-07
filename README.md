@@ -1,4 +1,4 @@
-### BackEnd Team Work Repository
+## BackEnd Team Work Repository
 
-# src/main/resources/application.properties
+### src/main/resources/application.properties
 Add your own database credential
