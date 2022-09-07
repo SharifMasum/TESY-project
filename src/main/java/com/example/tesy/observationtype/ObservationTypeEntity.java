@@ -38,14 +38,6 @@ public class ObservationTypeEntity {
         return speciesObsJoinIncluded;
     }
 
-    //Relation with observation
-    /*@ManyToMany(mappedBy = "speciesObservation")
-    private Set<ObservationEntity> typeIncluded = new HashSet<>();
-
-    public Set<ObservationEntity> getTypeIncluded() {
-        return typeIncluded;
-    }*/
-
     public ObservationTypeEntity(Long typeId,
                                  String obsTypeName,
                                  Set<SpeciesObsJoinEntity> speciesObsJoinIncluded) {
@@ -80,14 +72,14 @@ public class ObservationTypeEntity {
         this.obsTypeName = obsTypeName;
     }
 
+    public void assignSpeciesObsJoin(SpeciesObsJoinEntity speciesObsJoin) { speciesObsJoinIncluded.add(speciesObsJoin);
+    }
+
     @Override
     public String toString() {
         return "ObservationTypeEntity{" +
                 "typeId=" + typeId +
                 ", obsType_name=" + obsTypeName +
                 '}';
-    }
-
-    public void assignSpeciesObsJoin(SpeciesObsJoinEntity speciesObsJoin) { speciesObsJoinIncluded.add(speciesObsJoin);
     }
 }

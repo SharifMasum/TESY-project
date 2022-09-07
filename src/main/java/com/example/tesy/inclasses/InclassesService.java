@@ -22,8 +22,6 @@ public class InclassesService {
 
     public List<InclassesEntity> getInClassesEntity() { return inclassesRepository.findAll(); }
 
-
-
     public InclassesEntity addNewInClassesEntity(InclassesEntity inclassesEntity) {
         Optional<InclassesEntity> inclassesOptional =
                 inclassesRepository.findInclassByClassName(inclassesEntity.getClassName());

@@ -37,18 +37,6 @@ public class SpeciesObsJoinEntity {
         this.species = species;
     }
 
-    /*
-    // Relation with Observation. Later, relation type changed due to failure in execution.
-    An expert can still use this relation. In this case, it is suggested to remove/comment out *ManyToOne relation
-         @ManyToMany
-         @JoinTable(
-                 name = "species_observation",
-                 joinColumns = @JoinColumn(name = "speciesObsJoinId"),
-                 inverseJoinColumns = @JoinColumn(name = "observationId")
-         )
-        private Set<ObservationEntity> addedObservation = new HashSet<ObservationEntity>();
-        */
-
     // Relation with Observation
     @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "observationId")
@@ -78,14 +66,6 @@ public class SpeciesObsJoinEntity {
     public void setObservation(ObservationEntity observation) {
         this.observation = observation;
     }
-    /*
-    public Long getId() {
-        return speciesObsJoinId;
-    }
-
-    public void setSpeciesObsJoinId(Long speciesObsJoinId) {
-        this.speciesObsJoinId = speciesObsJoinId;
-    }*/
 
     public Long getSpeciesObsJoinId() {
         return speciesObsJoinId;
@@ -107,20 +87,10 @@ public class SpeciesObsJoinEntity {
         this.observation = observation;
     }
 
-
-    /*public void assignObservation(ObservationEntity observation) {
-        addedObservation.add(observation);
-    }*/
-
-    /*public void setAssignObservation(ObservationEntity observation) { addedObservation.add(observation);
-    }*/
-
-
     @Override
     public String toString() {
         return "SpeciesObsJoinEntity{" +
                 "speciesObsJoinId=" + speciesObsJoinId +
                 '}';
     }
-
 }

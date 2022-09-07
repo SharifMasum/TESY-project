@@ -23,7 +23,6 @@ public class ObservationTypeService {
         return observationTypeRepository.findAll();
     }
 
-
     public void deleteObservationType(Long typeId) {
         boolean exists = observationTypeRepository.existsById(typeId);
         if (!exists) {

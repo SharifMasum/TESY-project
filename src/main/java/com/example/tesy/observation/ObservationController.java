@@ -62,7 +62,8 @@ public class ObservationController {
     public ResponseEntity updateObservation(
             @PathVariable("observationId") Long observationId,
             @RequestBody ObservationEntity newObservation) {
-        return ResponseEntity.ok().body(observationService.updateObservation(observationId, newObservation));
+        return ResponseEntity.ok().body(observationService.updateObservation(
+                observationId, newObservation));
     }
 
     //Update by animal Id, relational data reference to animal class
@@ -89,6 +90,7 @@ public class ObservationController {
         return observationRepository.save(observation);
     }
 
+    // Update Observation by Observation Type Id. Relational data reference to Observation Type class.
     @PutMapping(path = "/{observationId}/observationtype/{typeId}")
     ObservationEntity assignObservationTypeToObservation(
             @PathVariable Long observationId,

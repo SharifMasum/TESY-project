@@ -58,7 +58,6 @@ public class ObservationTypeController {
     }
 
     //Update by speciesObsJoin Id
-
     @PutMapping(path = "/{typeId}/speciesobsjoin/{speciesObsJoinId}")
     ObservationTypeEntity assignSpeciesObsJoinToObservationType(
             @PathVariable Long typeId,

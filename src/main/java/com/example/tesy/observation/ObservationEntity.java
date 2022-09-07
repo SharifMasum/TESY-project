@@ -49,17 +49,6 @@ public class ObservationEntity {
     )
     private Set<ObservationTypeEntity> observationIncluded =new HashSet<>();
 
-
-    /*/ Relation with observation type
-    @ManyToOne(
-            cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER
-    )
-    @JoinColumn(name = "typeId")
-    private ObservationTypeEntity observationType;
-    */
-
-
     // Relation with people
     @ManyToOne(
             cascade = CascadeType.ALL,
@@ -132,17 +121,6 @@ public class ObservationEntity {
         this.animal = animal;
     }
 
-    /*
-    public ObservationTypeEntity getObservationType() {
-        return observationType;
-    }
-
-    public void setObservationType(ObservationTypeEntity observationType) {
-        this.observationType = observationType;
-    }
-    */
-
-
     public Set<ObservationTypeEntity> getObservationIncluded() {
         return observationIncluded;
     }
@@ -167,9 +145,8 @@ public class ObservationEntity {
         this.people = people;
     }
 
-    /*public void assignType(ObservationTypeEntity observationType) { this.observationType = observationType;
-    }*/
-
+    public void assignObservationType(ObservationTypeEntity observationType) { observationIncluded.add(observationType);
+    }
 
     @Override
     public String toString() {
@@ -183,7 +160,6 @@ public class ObservationEntity {
                 '}';
     }
 
-    public void assignObservationType(ObservationTypeEntity observationType) { observationIncluded.add(observationType);
-    }
+
 }
 

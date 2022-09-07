@@ -42,7 +42,6 @@ public class SpeciesController {
         speciesService.deleteSpecies(speciesId);
     }
 
-
     @PutMapping(path = "/{speciesId}")
     public ResponseEntity<SpeciesEntity> updateSpecies(
             @PathVariable("speciesId") Long speciesId,

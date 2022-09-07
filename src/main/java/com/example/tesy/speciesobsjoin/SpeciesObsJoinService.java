@@ -33,7 +33,6 @@ public class SpeciesObsJoinService {
         speciesObsJoinRepository.deleteById(speciesObsJoinId);
     }
 
-
     @Transactional
     public SpeciesObsJoinEntity updateSpeciesObsJoin(Long speciesObsJoinId, SpeciesObsJoinEntity newSpeciesObsJoin) {
         return speciesObsJoinRepository.findById(speciesObsJoinId).orElseThrow(()
