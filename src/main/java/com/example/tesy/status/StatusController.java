@@ -29,7 +29,8 @@ public class StatusController {
     @GetMapping(path = "{statusId}")
     public StatusEntity findStatusById(@PathVariable (value =
             "statusId") Long statusId) {
-        return this.statusRepository.findById(statusId).orElse(null);
+        return this.statusRepository.findById(statusId)
+                .orElseThrow(() -> new IllegalStateException("Status with Id "+ statusId +" does not exist!"));
     }
 
     @PostMapping

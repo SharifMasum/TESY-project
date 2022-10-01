@@ -34,7 +34,8 @@ public class ObservationTypeController {
     @GetMapping(path = "{typeId}")
     public ObservationTypeEntity findObservationTypeById(@PathVariable (value =
             "typeId") Long typeId) {
-        return this.observationTypeRepository.findById(typeId).orElse(null);
+        return this.observationTypeRepository.findById(typeId)
+                .orElseThrow(() -> new IllegalStateException("Observation type with Id "+ typeId +" does not exist!"));
     }
 
     @PostMapping

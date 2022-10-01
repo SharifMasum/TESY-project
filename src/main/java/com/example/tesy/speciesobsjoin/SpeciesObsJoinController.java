@@ -41,7 +41,8 @@ public class SpeciesObsJoinController {
     @GetMapping(path = "{speciesObsJoinId}")
     public SpeciesObsJoinEntity findSpeciesObsJoinById(@PathVariable (value =
             "speciesObsJoinId") Long speciesObsJoinId) {
-        return this.speciesObsJoinRepository.findById(speciesObsJoinId).orElse(null);
+        return this.speciesObsJoinRepository.findById(speciesObsJoinId)
+                .orElseThrow(() -> new IllegalStateException("SpeciesObsJoin with Id "+ speciesObsJoinId +" does not exist!"));
     }
 
     @DeleteMapping(path = "{speciesObsJoinId}")

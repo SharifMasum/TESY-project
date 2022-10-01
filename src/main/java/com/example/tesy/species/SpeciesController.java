@@ -28,7 +28,8 @@ public class SpeciesController {
     @GetMapping(path = "{speciesId}")
     public SpeciesEntity findSpeciesById(@PathVariable (value =
             "speciesId") Long speciesId) {
-        return this.speciesRepository.findById(speciesId).orElse(null);
+        return this.speciesRepository.findById(speciesId)
+                .orElseThrow(() -> new IllegalStateException("Species with Id "+ speciesId +" does not exist!"));
     }
     @PostMapping
     public SpeciesEntity registerNewSpecies(

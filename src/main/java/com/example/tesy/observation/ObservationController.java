@@ -48,7 +48,8 @@ public class ObservationController {
     @GetMapping(path = "{observationId}")
     public ObservationEntity findObservationById(@PathVariable (value =
             "observationId") Long observationId) {
-        return this.observationRepository.findById(observationId).orElse(null);
+        return this.observationRepository.findById(observationId)
+                .orElseThrow(() -> new IllegalStateException("Observation with Id "+ observationId +" does not exist!"));
     }
 
     // Delete by Id

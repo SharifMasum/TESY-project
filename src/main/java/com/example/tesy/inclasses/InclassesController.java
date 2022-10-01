@@ -28,7 +28,8 @@ public class InclassesController {
     @GetMapping(path = "/{inclassId}")
     public InclassesEntity findInclassById(@PathVariable (value =
             "inclassId") Long inclassId) {
-        return this.inclassesRepository.findById(inclassId).orElse(null);
+        return this.inclassesRepository.findById(inclassId)
+                .orElseThrow(() -> new IllegalStateException("Inclass with Id "+ inclassId +" does not exist!"));
     }
 
     @PostMapping
